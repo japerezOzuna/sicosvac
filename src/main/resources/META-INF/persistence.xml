@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="mx.lania_sicosvac_war_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>mx.lania.sicosvac.entidades.Inventario</class>
+    <class>mx.lania.sicosvac.entidades.Administrador</class>
+    <class>mx.lania.sicosvac.entidades.CampañaSalud</class>
+    <class>mx.lania.sicosvac.entidades.Centro</class>
+    <class>mx.lania.sicosvac.entidades.Contraindicacion</class>
+    <class>mx.lania.sicosvac.entidades.EfectoAdverso</class>
+    <class>mx.lania.sicosvac.entidades.Jurisdiccion</class>
+    <class>mx.lania.sicosvac.entidades.Menor</class>
+    <class>mx.lania.sicosvac.entidades.Notificacion</class>
+    <class>mx.lania.sicosvac.entidades.Recomendacion</class>
+    <class>mx.lania.sicosvac.entidades.ReporteVacuna</class>
+    <class>mx.lania.sicosvac.entidades.Rol</class>
+    <class>mx.lania.sicosvac.entidades.Tutor</class>
+    <class>mx.lania.sicosvac.entidades.Vacuna</class>
+    <class>mx.lania.sicosvac.entidades.VacunaMenor</class>
+    <class>mx.lania.sicosvac.entidades.CatalogoAplicacionVacuna</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=sicosvac"/>
+      <property name="javax.persistence.jdbc.user" value="sicosvac"/>
+      <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+      <property name="javax.persistence.jdbc.password" value="lania"/>
+    </properties>
+  </persistence-unit>
+</persistence>
