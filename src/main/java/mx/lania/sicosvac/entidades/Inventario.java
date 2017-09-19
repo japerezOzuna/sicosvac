@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,6 +31,7 @@ public class Inventario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_inventario")
@@ -39,10 +42,10 @@ public class Inventario implements Serializable {
     private int cantidad;
     @JoinColumn(name = "id_centro", referencedColumnName = "id_centro")
     @ManyToOne(optional = false)
-    private Centro idCentro;
+    private Centro centro;
     @JoinColumn(name = "id_vacuna", referencedColumnName = "id_vacuna")
     @ManyToOne(optional = false)
-    private Vacuna idVacuna;
+    private Vacuna vacuna;
 
     public Inventario() {
     }
@@ -72,20 +75,20 @@ public class Inventario implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public Centro getIdCentro() {
-        return idCentro;
+    public Centro getCentro() {
+        return centro;
     }
 
-    public void setIdCentro(Centro idCentro) {
-        this.idCentro = idCentro;
+    public void setCentro(Centro centro) {
+        this.centro = centro;
     }
 
-    public Vacuna getIdVacuna() {
-        return idVacuna;
+    public Vacuna getVacuna() {
+        return vacuna;
     }
 
-    public void setIdVacuna(Vacuna idVacuna) {
-        this.idVacuna = idVacuna;
+    public void setVacuna(Vacuna vacuna) {
+        this.vacuna = vacuna;
     }
 
     @Override

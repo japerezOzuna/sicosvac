@@ -7,10 +7,13 @@ package mx.lania.sicosvac.entidades;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -31,6 +34,7 @@ public class Vacuna implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_vacuna")
@@ -61,20 +65,20 @@ public class Vacuna implements Serializable {
     @NotNull
     @Column(name = "estatus")
     private int estatus;
-    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "idVacuna")
-    private Collection<Recomendacion> recomendacionesCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVacuna")
-    private Collection<CampañaSalud> campañasSaludCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVacuna")
-    private Collection<Contraindicacion> contraindicacionesCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVacuna")
-    private Collection<EfectoAdverso> efectosAdversosCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVacuna")
-    private Collection<CatalogoAplicacionVacuna> catalogoAplicacionesVacunasCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVacuna")
-    private Collection<VacunaMenor> vacunasMenoresCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVacuna")
-    private Collection<Inventario> inventarioCollection;*/
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vacuna")
+    private Set<Recomendacion> recomendaciones;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vacuna")
+    private Set<CampañaSalud> campañasSalud;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vacuna")
+    private Set<Contraindicacion> contraindicaciones;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vacuna")
+    private Set<EfectoAdverso> efectosAdversos;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vacuna")
+    private Set<CatalogoAplicacionVacuna> catalogoAplicacionesVacunas;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vacuna")
+    private Set<VacunaMenor> vacunasMenores;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vacuna")
+    private Set<Inventario> inventario;
 
     public Vacuna() {
     }

@@ -10,6 +10,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -33,6 +35,7 @@ public class CampañaSalud implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_campa\u00f1a")
@@ -66,7 +69,7 @@ public class CampañaSalud implements Serializable {
     private int estatus;
     @JoinColumn(name = "id_vacuna", referencedColumnName = "id_vacuna")
     @ManyToOne(optional = false)
-    private Vacuna idVacuna;
+    private Vacuna vacuna;
 
     public CampañaSalud() {
     }
@@ -140,12 +143,12 @@ public class CampañaSalud implements Serializable {
         this.estatus = estatus;
     }
 
-    public Vacuna getIdVacuna() {
-        return idVacuna;
+    public Vacuna getVacuna() {
+        return vacuna;
     }
 
-    public void setIdVacuna(Vacuna idVacuna) {
-        this.idVacuna = idVacuna;
+    public void setVacuna(Vacuna idVacuna) {
+        this.vacuna = idVacuna;
     }
 
     @Override

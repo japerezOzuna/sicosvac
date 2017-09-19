@@ -49,10 +49,8 @@ public class Aplicacion implements WebApplicationInitializer{
         contexto.setConfigLocation(paqueteClase + ".config");
         return contexto;
     }
-            
-    
+             
     private void addFilters(ServletContext contexto) {
-        // Filtro de encoding
         EnumSet<DispatcherType> dispatcherTypes = EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.ERROR);
 
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();

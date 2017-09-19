@@ -8,6 +8,7 @@ package mx.lania.sicosvac.oad;
 import java.util.List;
 import mx.lania.sicosvac.entidades.Vacuna;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
@@ -15,5 +16,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 
 public interface VacunasOad extends JpaRepository<Vacuna, Integer>{
-    
+            
+    //@Query(value="SELECT v FROM Vacuna v order by v.id desc")
+    //public Vacuna obtieneUltimaVacuna();
+    public List<Vacuna> findFirstByOrderByIdVacunaDesc();
 }

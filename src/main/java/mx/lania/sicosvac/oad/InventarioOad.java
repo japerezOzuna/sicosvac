@@ -8,6 +8,7 @@ package mx.lania.sicosvac.oad;
 import java.util.List;
 import mx.lania.sicosvac.entidades.Inventario;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
@@ -16,4 +17,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface InventarioOad extends JpaRepository<Inventario, Integer>{
     
+    @Query(value="SELECT i FROM Inventario i WHERE i.centro.idCentro=?1")
+    public List<Inventario> buscarInventarioPorCentro(int idCentro);
 }

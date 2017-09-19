@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import mx.lania.sicosvac.entidades.Vacuna;
 import mx.lania.sicosvac.oad.VacunasOad;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -24,6 +26,8 @@ import mx.lania.sicosvac.oad.VacunasOad;
 @RequestMapping("vacunas")
 
 public class ControladorRestVacunas {
+    private final static Logger LOGGER = LoggerFactory.getLogger(ControladorRestVacunas.class);
+    
     @Autowired
     VacunasOad vacunasOad;
     
@@ -38,8 +42,23 @@ public class ControladorRestVacunas {
         
     }
     
+    @RequestMapping(value="/ultimavacuna",method=RequestMethod.GET)
+    public List<Vacuna> getUltimaVacuna(){
+        return vacunasOad.findFirstByOrderByIdVacunaDesc();
+    }
+    
     @RequestMapping(value="",method=RequestMethod.POST)
     public Vacuna agregarVacuna(@RequestBody Vacuna vacuna){
+        vacuna.setEstatus(1);
+        LOGGER.debug("Datos recibidos: "+vacuna.getNombre()+" - "+String.valueOf(vacuna.getCodigoVacuna())+" - "+
+                vacuna.getQueEs()+" - "+vacuna.getAfectados()+" - "+vacuna.getAplicadaXCS()+" - "+String.valueOf(vacuna.getEstatus()));
+        vacunasOad.save(vacuna);
+        return vacuna;
+    }
+
+    @RequestMapping(value="/{id}", method = RequestMethod.PUT)
+    public Vacuna actualizarVacuna(@RequestBody Vacuna vacuna,
+            @PathVariable("id") Integer idVacuna){      
         vacunasOad.save(vacuna);
         return vacuna;
     }

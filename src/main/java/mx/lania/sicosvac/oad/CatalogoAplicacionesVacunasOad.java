@@ -8,6 +8,7 @@ package mx.lania.sicosvac.oad;
 import java.util.List;
 import mx.lania.sicosvac.entidades.CatalogoAplicacionVacuna;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
@@ -15,5 +16,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 
 public interface CatalogoAplicacionesVacunasOad extends JpaRepository<CatalogoAplicacionVacuna, Integer> {
-    
+
+    @Query(value="SELECT c FROM CatalogoAplicacionVacuna c WHERE c.vacuna.idVacuna=?1")
+    public List<CatalogoAplicacionVacuna> buscarCatalogoAplicacionPorVacuna(int idVacuna);    
 }

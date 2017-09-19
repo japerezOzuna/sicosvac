@@ -8,6 +8,7 @@ package mx.lania.sicosvac.oad;
 import java.util.List;
 import mx.lania.sicosvac.entidades.Tutor;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
@@ -15,5 +16,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 
 public interface TutoresOad extends JpaRepository<Tutor, Integer>{
+    
+    public List<Tutor> findByUsuario(String usuario);
+    public List<Tutor> findByCurp(String curp);
     
 }

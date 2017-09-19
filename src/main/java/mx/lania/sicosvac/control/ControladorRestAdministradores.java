@@ -35,4 +35,22 @@ public class ControladorRestAdministradores {
     public Administrador getAdministradorById(@PathVariable("id") Integer idAdministrador){
         return administradoresOad.findOne(idAdministrador);
     }
+    
+    @RequestMapping(value="",method=RequestMethod.POST)
+    public Administrador agregarAdministrador(@RequestBody Administrador administrador){
+        administradoresOad.save(administrador);
+        return administrador;
+    }
+    
+    @RequestMapping(value="/{id}", method = RequestMethod.PUT)
+    public Administrador actualizarAdministrador(@RequestBody Administrador administrador,
+            @PathVariable("id") Integer idAdministrador){      
+        administradoresOad.save(administrador);
+        return administrador;
+    }
+    
+    @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+    public void eliminarAdministrador(@PathVariable("id") Integer idAdministrador){      
+        administradoresOad.delete(idAdministrador);
+    }    
 }

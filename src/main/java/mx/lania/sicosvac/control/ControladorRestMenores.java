@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import mx.lania.sicosvac.entidades.Menor;
 import mx.lania.sicosvac.oad.MenoresOad;
+import org.springframework.web.bind.annotation.RequestParam;
      
 /**
  *
@@ -37,8 +38,20 @@ public class ControladorRestMenores {
         return menoresOad.findOne(idMenor);
     }
     
+    @RequestMapping(value="", method=RequestMethod.GET, params = {"curp"})
+    public List<Menor> getMenorByCurp(@RequestParam("curp") String curp){
+        return menoresOad.findByCurp(curp);
+    }     
+    
     @RequestMapping(value="",method=RequestMethod.POST)
     public Menor agregarMenor(@RequestBody Menor menor){
+        menoresOad.save(menor);
+        return menor;
+    }
+
+    @RequestMapping(value="/{id}", method = RequestMethod.PUT)
+    public Menor actualizarMenor(@RequestBody Menor menor, 
+            @PathVariable("id") Integer idMenor){      
         menoresOad.save(menor);
         return menor;
     }

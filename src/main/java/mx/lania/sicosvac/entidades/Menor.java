@@ -8,10 +8,13 @@ package mx.lania.sicosvac.entidades;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -36,6 +39,7 @@ public class Menor implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_menor")
@@ -87,9 +91,9 @@ public class Menor implements Serializable {
     private String observaciones;
     @JoinColumn(name = "id_tutor", referencedColumnName = "id_tutor")
     @ManyToOne(optional = false)
-    private Tutor idTutor;
-    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "idMenor")
-    private Collection<VacunaMenor> vacunasMenoresCollection;*/
+    private Tutor tutor;
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "menor")
+    private Set<VacunaMenor> vacunasMenores;
 
     public Menor() {
     }
@@ -218,12 +222,12 @@ public class Menor implements Serializable {
         this.observaciones = observaciones;
     }
 
-    public Tutor getIdTutor() {
-        return idTutor;
+    public Tutor getTutor() {
+        return tutor;
     }
 
-    public void setIdTutor(Tutor idTutor) {
-        this.idTutor = idTutor;
+    public void setTutor(Tutor tutor) {
+        this.tutor = tutor;
     }
 /*
     public Collection<VacunaMenor> getVacunasMenoresCollection() {

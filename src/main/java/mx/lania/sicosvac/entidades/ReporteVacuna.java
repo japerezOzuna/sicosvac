@@ -10,6 +10,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -33,6 +35,7 @@ public class ReporteVacuna implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_reporte")
@@ -59,7 +62,7 @@ public class ReporteVacuna implements Serializable {
     private String parentesco;
     @JoinColumn(name = "id_vacunas_menor", referencedColumnName = "id_vacunas_menor")
     @ManyToOne(optional = false)
-    private VacunaMenor idVacunasMenor;
+    private VacunaMenor vacunaMenor;
 
     public ReporteVacuna() {
     }
@@ -116,12 +119,12 @@ public class ReporteVacuna implements Serializable {
         this.parentesco = parentesco;
     }
 
-    public VacunaMenor getIdVacunasMenor() {
-        return idVacunasMenor;
+    public VacunaMenor getVacunaMenor() {
+        return vacunaMenor;
     }
 
-    public void setIdVacunasMenor(VacunaMenor idVacunasMenor) {
-        this.idVacunasMenor = idVacunasMenor;
+    public void setVacunaMenor(VacunaMenor vacunaMenor) {
+        this.vacunaMenor = vacunaMenor;
     }
 
     @Override

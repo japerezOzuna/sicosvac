@@ -15,5 +15,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 
 public interface MenoresOad extends JpaRepository<Menor, Integer>{
-    
+        public List<Menor> findByCurp(String curp);
 }

@@ -8,10 +8,13 @@ package mx.lania.sicosvac.entidades;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -36,6 +39,7 @@ public class Tutor implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_tutor")
@@ -108,13 +112,13 @@ public class Tutor implements Serializable {
     private int activacionAdmin;
     @Column(name = "estatus")
     private Integer estatus;
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "tutor")
+    protected Set<Menor> menores;
     /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "idTutor")
-    private Collection<Menor> menoresCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTutor")
     private Collection<Notificacion> notificacionesCollection;*/
     @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")
     @ManyToOne(optional = false)
-    private Rol idRol;
+    private Rol rol;
 
     public Tutor() {
     }
@@ -288,15 +292,15 @@ public class Tutor implements Serializable {
     public void setEstatus(Integer estatus) {
         this.estatus = estatus;
     }
+
+    protected Set<Menor> getMenores() {
+        return menores;
+    }
+
+    protected void setMenores(Set<Menor> menores) {
+        this.menores = menores;
+    }
 /*
-    public Collection<Menor> getMenoresCollection() {
-        return menoresCollection;
-    }
-
-    public void setMenoresCollection(Collection<Menor> menoresCollection) {
-        this.menoresCollection = menoresCollection;
-    }
-
     public Collection<Notificacion> getNotificacionesCollection() {
         return notificacionesCollection;
     }
@@ -305,12 +309,12 @@ public class Tutor implements Serializable {
         this.notificacionesCollection = notificacionesCollection;
     }
 */
-    public Rol getIdRol() {
-        return idRol;
+    public Rol getRol() {
+        return rol;
     }
 
-    public void setIdRol(Rol idRol) {
-        this.idRol = idRol;
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 
     @Override

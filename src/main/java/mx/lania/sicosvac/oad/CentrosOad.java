@@ -8,6 +8,7 @@ package mx.lania.sicosvac.oad;
 import java.util.List;
 import mx.lania.sicosvac.entidades.Centro;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
@@ -16,4 +17,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CentrosOad extends JpaRepository<Centro, Integer>{
     
+    @Query(value="SELECT c FROM Centro c WHERE c.jurisdiccion.idJurisdiccion=?1")
+    public List<Centro> buscarCentroPorJurisdiccion(int idJurisdiccion);    
 }

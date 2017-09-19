@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -30,6 +32,7 @@ public class Recomendacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_recomendacion")
@@ -46,7 +49,7 @@ public class Recomendacion implements Serializable {
     private String tiempo;
     @JoinColumn(name = "id_vacuna", referencedColumnName = "id_vacuna")
     @ManyToOne(optional = false)
-    private Vacuna idVacuna;
+    private Vacuna vacuna;
 
     public Recomendacion() {
     }
@@ -85,12 +88,12 @@ public class Recomendacion implements Serializable {
         this.tiempo = tiempo;
     }
 
-    public Vacuna getIdVacuna() {
-        return idVacuna;
+    public Vacuna getVacuna() {
+        return vacuna;
     }
 
-    public void setIdVacuna(Vacuna idVacuna) {
-        this.idVacuna = idVacuna;
+    public void setVacuna(Vacuna vacuna) {
+        this.vacuna = vacuna;
     }
 
     @Override

@@ -8,10 +8,13 @@ package mx.lania.sicosvac.entidades;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -36,6 +39,7 @@ public class VacunaMenor implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_vacunas_menor")
@@ -71,17 +75,17 @@ public class VacunaMenor implements Serializable {
     @Size(min = 1, max = 2)
     @Column(name = "recibir_notificaciones")
     private String recibirNotificaciones;
-    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "idVacunasMenor")
-    private Collection<ReporteVacuna> reportesVacunasCollection;*/
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vacunaMenor")
+    private Set<ReporteVacuna> reportesVacunas;
     @JoinColumn(name = "id_catalogo", referencedColumnName = "id_catalogo")
     @ManyToOne(optional = false)
-    private CatalogoAplicacionVacuna idCatalogo;
+    private CatalogoAplicacionVacuna catalogoAplicacion;
     @JoinColumn(name = "id_menor", referencedColumnName = "id_menor")
     @ManyToOne(optional = false)
-    private Menor idMenor;
+    private Menor menor;
     @JoinColumn(name = "id_vacuna", referencedColumnName = "id_vacuna")
     @ManyToOne(optional = false)
-    private Vacuna idVacuna;
+    private Vacuna vacuna;
 
     public VacunaMenor() {
     }
@@ -184,28 +188,28 @@ public class VacunaMenor implements Serializable {
         this.reportesVacunasCollection = reportesVacunasCollection;
     }
 */
-    public CatalogoAplicacionVacuna getIdCatalogo() {
-        return idCatalogo;
+    public CatalogoAplicacionVacuna getCatalogoAplicacion() {
+        return catalogoAplicacion;
     }
 
-    public void setIdCatalogo(CatalogoAplicacionVacuna idCatalogo) {
-        this.idCatalogo = idCatalogo;
+    public void setCatalogoAplicacion(CatalogoAplicacionVacuna catalogoAplicacion) {
+        this.catalogoAplicacion = catalogoAplicacion;
     }
 
-    public Menor getIdMenor() {
-        return idMenor;
+    public Menor getMenor() {
+        return menor;
     }
 
-    public void setIdMenor(Menor idMenor) {
-        this.idMenor = idMenor;
+    public void setMenor(Menor menor) {
+        this.menor = menor;
     }
 
-    public Vacuna getIdVacuna() {
-        return idVacuna;
+    public Vacuna getVacuna() {
+        return vacuna;
     }
 
-    public void setIdVacuna(Vacuna idVacuna) {
-        this.idVacuna = idVacuna;
+    public void setVacuna(Vacuna vacuna) {
+        this.vacuna = vacuna;
     }
 
     @Override

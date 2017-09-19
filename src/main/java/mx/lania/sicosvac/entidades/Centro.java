@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -33,6 +35,7 @@ public class Centro implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_centro")
@@ -87,7 +90,7 @@ public class Centro implements Serializable {
     private double googleMapsLongitud;
     @JoinColumn(name = "id_jurisdiccion", referencedColumnName = "id_jurisdiccion")
     @ManyToOne(optional = false)
-    private Jurisdiccion idJurisdiccion;
+    private Jurisdiccion jurisdiccion;
     /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "idCentro")
     private Collection<Administrador> administradoresCollection;*/
     /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "idCentro")
@@ -202,12 +205,12 @@ public class Centro implements Serializable {
         this.googleMapsLongitud = googleMapsLongitud;
     }
 
-    public Jurisdiccion getIdJurisdiccion() {
-        return idJurisdiccion;
+    public Jurisdiccion getJurisdiccion() {
+        return jurisdiccion;
     }
 
-    public void setIdJurisdiccion(Jurisdiccion idJurisdiccion) {
-        this.idJurisdiccion = idJurisdiccion;
+    public void setJurisdiccion(Jurisdiccion jurisdiccion) {
+        this.jurisdiccion = jurisdiccion;
     }
 /*
     public Collection<Administrador> getAdministradoresCollection() {

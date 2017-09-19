@@ -21,7 +21,7 @@ import mx.lania.sicosvac.oad.VacunasMenoresOad;
  */
 
 @RestController
-@RequestMapping("vacunasmenores")
+@RequestMapping("vacunasMenores")
 public class ControladorRestVacunasMenores {
     @Autowired
     VacunasMenoresOad vacunasMenoresOad;
@@ -41,6 +41,13 @@ public class ControladorRestVacunasMenores {
         vacunasMenoresOad.save(vacunaMenor);
         return vacunaMenor;
     }
+    
+    @RequestMapping(value="/{id}", method = RequestMethod.PUT)
+    public VacunaMenor actualizarVacunaMenor(@RequestBody VacunaMenor vacunaMenor,
+            @PathVariable("id") Integer idVacunaMenor){      
+        vacunasMenoresOad.save(vacunaMenor);
+        return vacunaMenor;
+    }    
     
     @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
     public void eliminarVacunaMenor(@PathVariable("id") Integer idVacunaMenor){      

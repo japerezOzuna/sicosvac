@@ -7,10 +7,13 @@ package mx.lania.sicosvac.entidades;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -33,6 +36,7 @@ public class CatalogoAplicacionVacuna implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_catalogo")
@@ -52,9 +56,9 @@ public class CatalogoAplicacionVacuna implements Serializable {
     private int estatus;
     @JoinColumn(name = "id_vacuna", referencedColumnName = "id_vacuna")
     @ManyToOne(optional = false)
-    private Vacuna idVacuna;
-    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "idCatalogo")
-    private Collection<VacunaMenor> vacunasMenoresCollection;*/
+    private Vacuna vacuna;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "catalogoAplicacion")
+    private Set<VacunaMenor> vacunasMenores;
 
     public CatalogoAplicacionVacuna() {
     }
@@ -102,12 +106,12 @@ public class CatalogoAplicacionVacuna implements Serializable {
         this.estatus = estatus;
     }
 
-    public Vacuna getIdVacuna() {
-        return idVacuna;
+    public Vacuna getVacuna() {
+        return vacuna;
     }
 
-    public void setIdVacuna(Vacuna idVacuna) {
-        this.idVacuna = idVacuna;
+    public void setVacuna(Vacuna vacuna) {
+        this.vacuna = vacuna;
     }
 /*
     public Collection<VacunaMenor> getVacunasMenoresCollection() {

@@ -8,6 +8,8 @@ package mx.lania.sicosvac.oad;
 import java.util.List;
 import mx.lania.sicosvac.entidades.Contraindicacion;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
@@ -16,4 +18,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ContraindicacionesOad extends JpaRepository<Contraindicacion, Integer>{
     
+    @Query(value="SELECT c FROM Contraindicacion c WHERE c.vacuna.idVacuna=?1")
+    public List<Contraindicacion> buscarContraindicacionesPorVacuna(int idVacuna);
 }
