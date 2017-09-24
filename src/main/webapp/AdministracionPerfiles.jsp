@@ -11,17 +11,25 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Administración de perfiles</title>
     </head>
-    <body>
+    <body><br>
         <section ng-controller="ControladorPerfiles">
-        <form name="AdministraPerfiles" id="AdministraPerfiles">
-            <fieldset>  <legend>Administracion de Perfiles</legend>
-                <div class="row col-lg-6">
-                    <div class="form-group col-lg-12">
-                        <input type="button" OnClick="location.href ='PerfilMenor.jsp'" id="btnMenores"  value="Dar de alta un menor" class="btn btn-primary" />
-                        <input type="button" OnClick="location.href ='PerfilTutor.jsp'" id="btnTutores"  value="Dar de alta un tutor" class="btn btn-default" />
-                    </div>
-                </div>
-            </fieldset>
+            <div class="panel panel-default">
+                <div class="panel-heading">Administración de perfiles</div>
+                <div class="panel-body">
+                    <form name="AdministraPerfiles" id="AdministraPerfiles">
+                        <fieldset>  <legend>1.- ¿Que desea hacer?</legend>
+                            <div class="row col-lg-8">
+                                <div class="form-group col-lg-4">
+                                    <input type="button" onClick="location.href='PerfilMenor.jsp'" id="btnMenores"  value="Dar de alta un menor" class="btn btn-primary form-control" />
+                                    <!--<input type="button" ng-click="ruta('/AltaPerfilMenor')" id="btnMenores"  value="Dar de alta un menor" class="btn btn-primary form-control" />-->
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <input type="button" onClick="location.href='PerfilTutor.jsp'" id="btnTutores"  value="Dar de alta un tutor" class="btn btn-default form-control" />
+                                    <!--<input type="button" ng-click="ruta('/AltaPerfilTutor')" id="btnTutores"  value="Dar de alta un tutor" class="btn btn-default form-control" />-->
+                                </div>
+                            </div>
+                        </fieldset>
+                        <br>
             <fieldset><legend>Modificar Perfil de un menor</legend>
                 <div class="row col-lg-8">
                     <div class="form-group col-lg-12">
@@ -41,7 +49,7 @@
                         <textarea ng-model="datosMenor" id="txtAInfoMenor" class="form-control" TextMode="multiline" Columns="50" Rows="4"  disabled/></textarea>
                     </div>
                     <div class="form-group col-lg-6">
-                        <input type="button" ng-click="" id="btnModificaMenor"  value="Modificar Perfil" class="btn btn-primary"/>
+                        <input type="button" ng-click="" id="btnModificaMenor"  value="Modificar Perfil" class="btn btn-primary form-control"/>
                     </div>
                 </div>
             </fieldset>
@@ -63,7 +71,7 @@
                         <textarea id="txtAVerificaTutor" ng-model="datosTutor" class="form-control" TextMode="multiline" Columns="50" Rows="4"  disabled /></textarea>
                     </div>
                     <div class="form-group col-lg-6">
-                        <input type="button" ng-click="modificarPerfilTutor()" id="btnModificaTutor"  value="Modificar Perfil" class="btn btn-primary"/>
+                        <input type="button" ng-click="modificarPerfilTutor()" id="btnModificaTutor"  value="Modificar Perfil" class="btn btn-primary form-control"/>
                     </div>
                 </div>
             </fieldset>
@@ -88,6 +96,8 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+        </div>
+        </section>            
     </body>
 </html>
