@@ -20,12 +20,12 @@
                         <fieldset>  <legend>1.- ¿Que desea hacer?</legend>
                             <div class="row col-lg-8">
                                 <div class="form-group col-lg-4">
-                                    <input type="button" onClick="location.href='PerfilMenor.jsp'" id="btnMenores"  value="Dar de alta un menor" class="btn btn-primary form-control" />
-                                    <!--<input type="button" ng-click="ruta('/AltaPerfilMenor')" id="btnMenores"  value="Dar de alta un menor" class="btn btn-primary form-control" />-->
+                                    <!--<input type="button" onClick="location.href='PerfilMenor.jsp'" id="btnMenores"  value="Dar de alta un menor" class="btn btn-primary form-control" />-->
+                                    <input type="button" ng-click="ruta('/altaPerfilMenor')" id="btnMenores"  value="Dar de alta un menor" class="btn btn-primary form-control" />
                                 </div>
                                 <div class="form-group col-lg-4">
-                                    <input type="button" onClick="location.href='PerfilTutor.jsp'" id="btnTutores"  value="Dar de alta un tutor" class="btn btn-default form-control" />
-                                    <!--<input type="button" ng-click="ruta('/AltaPerfilTutor')" id="btnTutores"  value="Dar de alta un tutor" class="btn btn-default form-control" />-->
+                                    <!--<input type="button" onClick="location.href='PerfilTutor.jsp'" id="btnTutores"  value="Dar de alta un tutor" class="btn btn-default form-control" />--->
+                                    <input type="button" ng-click="ruta('/altaPerfilTutor')" id="btnTutores"  value="Dar de alta un tutor" class="btn btn-default form-control" />
                                 </div>
                             </div>
                         </fieldset>
@@ -49,7 +49,7 @@
                         <textarea ng-model="datosMenor" id="txtAInfoMenor" class="form-control" TextMode="multiline" Columns="50" Rows="4"  disabled/></textarea>
                     </div>
                     <div class="form-group col-lg-6">
-                        <input type="button" ng-click="" id="btnModificaMenor"  value="Modificar Perfil" class="btn btn-primary form-control"/>
+                        <input type="button" ng-click="modificarPerfilMenor()" id="btnModificaMenor"  value="Modificar Perfil" class="btn btn-primary form-control"/>
                     </div>
                 </div>
             </fieldset>
@@ -78,8 +78,8 @@
         </form>
             <!-- modal de confirmacion o error-->
             <div class="modal fade" id="modalConfirmaPerfil" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
-                    <div id="upModal"  ChildrenAsTriggers="false" UpdateMode="Conditional">
+                <div class="modal-dialog">
+                    <div id="upModal">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -90,7 +90,7 @@
                                     <span id="lblModalBody"></span>
                                 </div>
                                 <div class="modal-footer" id="footerModal">
-                                    <input type="button" ng-click="" id="btnCerrar"  value="Cerrar" class="btn btn-primary" aria-hidden="true" data-dismiss="modal" />
+                                    <input type="button" ng-click="" id="btnCerrar"  value="Cerrar" class="btn btn-info" aria-hidden="true" data-dismiss="modal" />
                                 </div>
                             </div>
                     </div>

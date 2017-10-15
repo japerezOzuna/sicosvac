@@ -13,12 +13,9 @@
     </head>
     <body><br>
         <section ng-controller = "ControladorVacunas"> 
-            <div ng-focus="avisoAlerta" uib-alert 
-                ng-repeat = "alerta in alertas" 
-                ng-class = "'alert-' + alerta.type"
-                close = "quitarAlerta($index)">
-                {{alerta.msg}}    
-            </div>
+        <div class="panel panel-default">
+        <div class="panel-heading">Registro de vacunas</div>
+        <div class="panel-body">        
         <form name="modificaVacuna">
         <fieldset><legend>Modificación de vacunas</legend>
             <div class="row col-lg-8">
@@ -59,7 +56,7 @@
                         <input type="button" ng-click="guardarVacuna()" ng-disabled="modificaVacuna.$invalid" id="btnConfirmaAlta" value="Guardar" class="btn btn-primary form-control" />
                     </div>
                     <div class="form-group col-lg-4">
-                        <input type="button" onClick="location.href ='AdministracionVacunas.jsp'" id="btnCancelarAlta" value="Cancelar" class="btn btn-default form-control" formnovalidate="true"  />
+                        <input type="button" ng-click="ruta('/administracionVacunas')" id="btnCancelarAlta" value="Cancelar" class="btn btn-default form-control" formnovalidate="true"  />
                     </div>
                 </div>
         </fieldset>
@@ -192,6 +189,8 @@
                 </div>
             </div>
         </form>
+        </div>
+        </div>
     <!-- Modal confirma modificacion de vacuna -->
     <div id="modalConfirmaModificacion" class="modal fade" role="dialog">
       <div class="modal-dialog">
@@ -205,7 +204,7 @@
             <p>La información de la vacuna se modificó exitosamente</p>
           </div>
           <div class="modal-footer">            
-            <button type="button" onClick="window.location.href = 'AdministracionVacunas.jsp';" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button type="button" ng-click="ruta('/administracionVacunas')" class="btn btn-default" data-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div>
@@ -246,7 +245,7 @@
             <span id="lblModalBody"></span>
           </div>
           <div class="modal-footer">            
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div>

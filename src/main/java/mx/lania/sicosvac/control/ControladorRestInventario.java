@@ -32,9 +32,19 @@ public class ControladorRestInventario {
     }
  
     @RequestMapping(value="",method = RequestMethod.GET, params = {"idCentro"})
-    public List<Inventario> getCentroByJurisdiccion(@RequestParam("idCentro") int idCentro){
+    public List<Inventario> getInventarioByCentro(@RequestParam("idCentro") int idCentro){
         return inventarioOad.buscarInventarioPorCentro(idCentro);
     }     
+    
+    @RequestMapping(value="/disponible",method = RequestMethod.GET)
+    public List<Inventario> getInventarioDisponibleByCentro(){
+        return inventarioOad.buscarInventarioDisponible();
+    }
+    
+    @RequestMapping(value="/disponible",method = RequestMethod.GET, params = {"idCentro"})
+    public List<Inventario> getInventarioDisponibleByCentro(@RequestParam("idCentro") int idCentro){
+        return inventarioOad.buscarInventarioDisponiblePorCentro(idCentro);
+    }
     
     @RequestMapping(value="/{id}",method=RequestMethod.GET)
     public Inventario getInventarioById(@PathVariable("id") Integer idInventario){

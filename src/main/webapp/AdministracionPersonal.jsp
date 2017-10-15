@@ -11,105 +11,118 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Administración de cuentas de usuario</title>
     </head>
-    <body>
+    <body><br>
         <section>
-            <form name="administraUsuario">              
-                <fieldset id="pnlActivaciondecuentas"><legend>Administracion de cuentas</legend>                
+            <div class="panel panel-default">
+            <div class="panel-heading">Administración de cuentas de usuario</div>
+            <div class="panel-body">            
+            <form name="administraUsuario"> 
+                <fieldset>  <legend>Registro</legend>
+                    <div class="row col-lg-8">
+                        <div class="form-group col-lg-4">
+                            <!--<input type="button" onClick="location.href='PerfilMenor.jsp'" id="btnMenores"  value="Dar de alta un menor" class="btn btn-primary form-control" />-->
+                            <input type="button" ng-click="ruta('/registroUsuarios')" id="btnRegistroUsuario"  value="Dar de alta un usuario" class="btn btn-primary form-control" />
+                        </div>
+                    </div>
+                </fieldset>  <br>             
+                <fieldset id="pnlActivaciondecuentas"><legend>Administración</legend>
                 <div class="form-group col-lg-12">
                     <label id="lblActivacion">Seleccione la Jurisdicción Sanitaria</label>
                 </div>                      
                 <div class="form-group col-lg-8">
-                    <div class="row col-lg-6">
+                    <div class="col-lg-6">
                         <select id="ddlJurisdiccion" class="form-control"
                                         ng-model="jurisdiccion"
                                         ng-options="jurisdiccion as jurisdiccion.nombreJurisdiccion for jurisdiccion in listaJurisdicciones track by jurisdiccion.idJurisdiccion"
                                         ng-change="llenaListaCentros(jurisdiccion)">
-                                    <option>-Seleccione la Jurisdicción Sanitaria</option>
+                                    <option Value="">-Todas las jurisdicciones-</option>
                         </select>
-                    </div>
+                     </div>
                 </div>
                 <div class="form-group col-lg-12">
-                    <label id="lblActivacion">Seleccione un Centro de Responsabilidad para ver las solicitudes de Activacion</label>
+                    <label id="lblActivacion">Seleccione el Centro de Responsabilidad</label>
                 </div>
                 <div class="form-group col-lg-8">
                     <div class="form-group col-lg-6">
                             <select id="ddlCentroSalud" class="form-control"
                                     ng-model="centro"
-                                    ng-options="centro as centro.nombreCentro for centro in listaCentros track by centro.idCentro"
-                                    ng-change="">
-                                <option>-Seleccione el Centro de Responsabilidad</option>
+                                    ng-options="centro as centro.nombreCentro for centro in listaCentros track by centro.idCentro">
+                                <option Value="">-Todos los centros-</option>
                             </select>
                     </div>
                     <div class="form-group col-lg-6">
-                        <select id="ddlEstatus"  class="form-control">
-                            <option Value="2">--Todos los Estatus--</option>
+                        <select id="ddlEstatus"  ng-model="filtroEstatus" class="form-control">
+                            <option Value="">--Todos los Estatus--</option>
                             <option Value="1">Cuentas Activadas</option>
-                            <option Value="0">Cuentas No Activadas</option>
+                            <option Value="2">Cuentas No Activadas</option>
                         </select>
                     </div>
-                    <div class="form-group col-lg-3">
-                        <input type="button" id="btnFiltrar"  class="btn btn-primary form-control" value="Filtrar" formnovalidate="true"/>
-                    </div>
+                    <div class="form-group row col-lg-12">
+                        <div class="form-group col-lg-3">
+                            <input type="button" ng-click="aplicaFiltro()" id="btnFiltrar"  class="btn btn-primary form-control" value="Filtrar" formnovalidate="true"/>
+                        </div>
+                    </div>  
                 </div>
-                <div class="form-group col-lg-8">
-                    <table id="gvPersonal" class="table table-striped table-hover table-condensed small-top-margin">
-                        <tr>
-                        <!--<asp:BoundField DataField="nombre" Headervalue="Nombre" />
-                            <asp:BoundField DataField="apellidos" Headervalue="Apellidos" />
-                            <asp:BoundField DataField="usuario" Headervalue="Usuario" />
-                            <asp:CommandField ShowSelectButton="True" ButtonType="Image" SelectImageUrl="~/image/editar.png" />
-                        -->
-                        </tr>
-                    </table>
+                <div class="form-group col-lg-8" ui-i18n="es">
+                    <!-- Div para llenar UI-GRID -->
+                    <div ui-grid="gridOptions"  ui-grid-pagination ui-grid-selection class="grid"></div>
                 </div>
             </fieldset>
                 <fieldset id="pnlDatos"><legend>Datos de la cuenta</legend>
                 <div class="form-group col-lg-8" ng-class="{'has-error':administraUsuario.nombre.$invalid && administraUsuario.nombre.$dirty}">
-                    <input type="text" name="nombre" id="txtNombre"  class="form-control" placeholder="Nombre(s):" required>
+                    <input type="text" ng-model="administrador.nombre" ng-disabled="!editaUsuario" name="nombre" id="txtNombre"  class="form-control" placeholder="Nombre(s):" required>
                     <span ng-if="administraUsuario.nombre.$invalid && administraUsuario.nombre.$dirty" class="help-block">Este campo es requerido</span>
                 </div>
                 <div class="form-group col-lg-8" ng-class="{'has-error':administraUsuario.apellidos.$invalid && administraUsuario.apellidos.$dirty}">
-                    <input type="text" name="apellidos" id="txtApellidos"  class="form-control" placeholder="Apellido(s):" required>
+                    <input type="text" ng-model="administrador.apellidos" ng-disabled="!editaUsuario" name="apellidos" id="txtApellidos"  class="form-control" placeholder="Apellido(s):" required>
                     <span ng-if="administraUsuario.apellidos.$invalid && administraUsuario.apellidos.$dirty" class="help-block">Este campo es requerido</span>
                 </div>
                 <div class="form-group col-lg-8" ng-class="{'has-error':administraUsuario.usuario.$invalid && administraUsuario.usuario.$dirty}">
-                    <input type="email" name="usuario" id="txtcorreo"  class="form-control" placeholder="Usuario:" required>
+                    <input type="email" ng-model="administrador.usuario" ng-disabled="!editaUsuario" name="usuario" id="txtcorreo"  class="form-control" placeholder="Usuario:" required>
                     <span ng-if="administraUsuario.usuario.$invalid && administraUsuario.usuario.$dirty" class="help-block">Este campo es requerido</span>
                 </div>
                 <div class="form-group col-lg-8">
                     <label id="Label1">Asigne un rol a este usuario</label><br />
-                    <select id="ddlrol"  class="form-control"
-                            ng-model="rol"
+                    <select id="ddlrol" ng-disabled="!editaUsuario" class="form-control"
+                            ng-model="administrador.rol"
                             ng-options="rol as rol.descripcion for rol in listaRoles track by rol.idRol"
                             ng-change="">
                         <option>-Seleccione el para de usuario</option>
                     </select>
                 </div>
-                <div class="form-group col-lg-8">
+                <div class="form-group col-lg-8" ng-class="{'has-error':administraUsuario.estatus.$invalid && administraUsuario.usuario.$dirty}">
                     <label id="lblestatus">Asigne un estatus a la cuenta ya sea Activada o Desactivada</label><br />
-                    <select id="ddlEstatusSelect"  class="form-control">
-                        <option Value="0">Desactivada</option>
+                    <select id="ddlEstatusSelect" ng-model="administrador.estatus" ng-disabled="!editaUsuario" name="estatus" class="form-control">
                         <option Value="1">Activada</option>
+                        <option Value="2">Desactivada</option>
                     </select>
+                    <span ng-if="administraUsuario.usuario.$invalid && administraUsuario.estatus.$dirty" class="help-block">Este campo es requerido</span>
                 </div>
-                <div class="form-group col-lg-12">
-                    <div class="form-group col-lg-4">
-                        <input type="button" id="btnGuardar"  value="Guardar" class="btn btn-primary form-control"/>
+                <div class="form-group row col-lg-12">
+                    <div class="form-group col-lg-3">
+                        <input type="button" ng-click="confirmaModificacionUsuario()" ng-disabled="!editaUsuario" id="btnGuardar"  value="Guardar" class="btn btn-primary form-control"/>
+                    </div>
+                    <div class="form-group col-lg-3">
+                        <input type="button" ng-click="ruta('/')"id="btnCancelar"  value="Cancelar" class="btn btn-default form-control" formnovalidate="true"/>
                     </div>
                 </div>
             </fieldset>
+            <!--
                 <fieldset id="pnlOpciones"><legend>Opciones</legend>
-                    <div class="form-group col-lg-12">
-                <div class="form-group col-lg-3">
-                    <input type="button" id="btnEnviaCorreo"  class="btn btn-default form-control" value="Reenviar Codigo de activacion" formnovalidate="true"/>
-                </div>
+                <div class="form-group row col-lg-12">
+                    <div class="form-group col-lg-3">
+                        <input type="button" id="btnEnviaCorreo"  class="btn btn-default form-control" value="Reenviar Codigo de activacion" formnovalidate="true"/>
                     </div>
+                </div>
             </fieldset>
+            -->
             </form>
+            </div>
+            </div>
             <!-- estructura de modal no modificar solo cambiar labels-->
             <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
-                    <div id="upModal"  ChildrenAsTriggers="false" UpdateMode="Conditional">
+                <div class="modal-dialog">
+                    <div id="upModal">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -120,6 +133,7 @@
                                     <label id="lblModalBody"></label>
                                 </div>
                                 <div class="modal-footer" id="footerModal">
+                                    <input type="button" id="btnModifica"  value="Cerrar" class="btn btn-info" aria-hidden="true" data-dismiss="modal" />
                                 </div>
                             </div>
                     </div>

@@ -51,7 +51,9 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">SICOSVAC</a>
+                    <a class="navbar-brand" href="#">
+                        <img alt="" src="imagenes/logo440.png">Sistema de Control y Seguimiento de Vacunación en Menores
+                    </a>
                 </div>
                 <!-- Top Menu Items -->
                 <ul class="nav navbar-right top-nav">
@@ -63,7 +65,7 @@
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href=""><i class="fa fa-fw fa-power-off"></i>&nbsp;Log out&nbsp;</a>
+                                <a href=""><i class="fa fa-fw fa-power-off"></i>&nbsp;Cerrar sesión&nbsp;</a>
                             </li>
                         </ul>
                     </li>
@@ -72,7 +74,7 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav demo">
                         <li>
-                            <a href="index.jsp"><i class="fa fa-home" aria-hidden="true"></i></i>&nbsp;Inicio</a>
+                            <a href="index.jsp"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;Inicio</a>
                         </li>
                         <li>
                             <a href="javascript:;" data-toggle="collapse" data-target="#Vacunador"><i class="fa fa-eyedropper" aria-hidden="true"></i>&nbsp;&nbsp;Vacunador<i class="fa fa-fw fa-caret-down"></i></a>
@@ -118,9 +120,7 @@
             <div id="page-wrapper">
 
                 <div class="container-fluid">
-                    
                     <sitemesh:write property='body'/>
-
                 </div>
                 <!-- /.container-fluid -->
 
@@ -135,7 +135,5 @@
         <script src="theme/js/bootstrap-datepicker.js"></script>
         <!-- Bootstrap Core JavaScript -->
         <script src="theme/js/bootstrap.min.js"></script>
-            </div>
-        </div>
     </body>
 </html>

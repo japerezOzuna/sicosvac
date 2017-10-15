@@ -11,10 +11,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Actualizar cartilla de vacunación</title>
     </head>
-    <body>
-        <section>            
+    <body><br>
+        <section ng-controller="ControladorActualizaCartilla">
+            <div class="panel panel-default">
+            <div class="panel-heading">Actualizar Cartilla de salud</div>
+            <div class="panel-body">            
                 <form name="ActualizaCartilla">
-                    <fieldset id="panel3"> <legend>Actualizar Cartilla de Vacunacion de menores</legend>
+                    <!--<fieldset id="panel3"> <legend>Actualizar Cartilla de Vacunacion de menores</legend>-->
                     <div class="row col-lg-8">
                         <div class="form-group col-lg-12">
                             <label id="lblModifica" Font-Bold="True">1.-Busqueda de menor mediante CURP</label>
@@ -36,14 +39,22 @@
                             <label id="lblVacuna" Font-Bold="True">3.-Seleccione una vacuna</label>
                         </div>
                         <div class="form-group col-lg-12">
-                            <select id="ddlVacuna" ng-model="listaVacunasMenor">
+                            <select id="ddlVacuna" class="form-control"
+                                    ng-model="inventario"
+                                    ng-options="inventario as inventario.vacuna.nombre for inventario in listaVacunas track by inventario.vacuna.idVacuna"
+                                    ng-change="muestraDatosVacuna(inventario.vacuna)">
+                                <option value="">Seleccione una vacuna</option>
                             </select>
                         </div>
                         <div class="form-group col-lg-12">
                             <label id="Label1"  Font-Bold="True">Aplicaciones Faltantes</label>
                         </div>
                         <div class="form-group col-lg-12">
-                            <select id="ddlVacunasFaltantes" ng-model="listaVacunasPorAplicar">
+                            <select id="ddlVacunasFaltantes" class="form-control"
+                                    ng-model="dosis"
+                                    ng-options="dosis as dosis.dosis for dosis in listaDosisPorAplicar track by dosis.idCatalogo"
+                                    ng-change="editaVacunaMenor(dosis)">
+                               <option value="">Seleccione la dosis o aplicación</option>
                             </select>
                         </div>
                         <div class="form-group col-lg-12">
@@ -56,33 +67,39 @@
                             <label id="lbldatos"  Font-Bold="True">5.-Datos de aplicación</label>
                         </div>
                         <div class="form-group col-lg-12" ng-class="{'has-error':ActualizaCartilla.fechaAplicacion.$invalid && ActualizaCartilla.fechaAplicacion.$dirty}">
-                            <input type="date" ng-model="vacunaMenor.fechaAplicacion" name="fechaAplicacion" id="txtFecha"  class="form-control" placeholder="Fecha de aplicación" required >
+                            <input type="date" format-date ng-model="vacunaMenor.fechaAplicacion" ng-disabled="!editaVM" name="fechaAplicacion" id="txtFecha"  class="form-control" placeholder="Fecha de aplicación" required >
                             <span ng-if="ActualizaCartilla.fechaAplicacion.$invalid && ActualizaCartilla.fechaAplicacion.$dirty" class="help-block">Este campo es requerido</span>
                         </div>
                         <div class="form-group col-lg-12" ng-class="{'has-error':ActualizaCartilla.nombreAplicador.$invalid && ActualizaCartilla.nombreAplicador.$dirty}">
-                            <input type="text" ng-model="vacunaMenor.nombreAplicador" name="nombreAplicador" id="txtNombreAplicador"  class="form-control" placeholder="Nombre del aplicador" required>
+                            <input type="text" ng-model="vacunaMenor.nombreAplicador" ng-disabled="!editaVM" name="nombreAplicador" id="txtNombreAplicador"  class="form-control" placeholder="Nombre del aplicador" required>
                             <span ng-if="ActualizaCartilla.nombreAplicador.$invalid && ActualizaCartilla.nombreAplicador.$dirty" class="help-block">Este campo es requerido</span>
                         </div>
                         <div class="form-group col-lg-12" ng-class="{'has-error':ActualizaCartilla.nombreFamiliar.$invalid && ActualizaCartilla.nombreFamiliar.$dirty}">
-                            <input type="text" ng-model="vacunaMenor.nombreFamiliar"  name="nombreFamiliar" id="txtAcompañante"  class="form-control" placeholder="¿Quien acompaño al menor?" required>
+                            <input type="text" ng-model="vacunaMenor.nombreFamiliar" ng-disabled="!editaVM" name="nombreFamiliar" id="txtAcompañante"  class="form-control" placeholder="¿Quien acompaño al menor?" required>
                             <span ng-if="ActualizaCartilla.nombreFamiliar.$invalid && ActualizaCartilla.nombreFamiliar.$dirty" class="help-block">Este campo es requerido</span>
                         </div>
                         <div class="form-group col-lg-12" ng-class="{'has-error':ActualizaCartilla.parentesco.$invalid && ActualizaCartilla.parentesco.$dirty}">
-                            <input type="text" ng-model="vacunaMenor.parentesco" name="parentesco" id="txtParentesco"  class="form-control" placeholder="Parentesco" required>
+                            <input type="text" ng-model="vacunaMenor.parentesco" ng-disabled="!editaVM" name="parentesco" id="txtParentesco"  class="form-control" placeholder="Parentesco" required>
                             <span ng-if="ActualizaCartilla.parentesco.$invalid && ActualizaCartilla.parentesco.$dirty" class="help-block">Este campo es requerido</span>
                         </div>
-                        <div class="form-group col-lg-12">
-                            <input type="button" ng-click="" id="btnAceptar"  value="Aceptar" class="btn btn-primary" />
-                            <input type="button" OnClick="location.href ='index.jsp'" id="btnCancelar"  value="Cancelar" class="btn btn-default" formnovalidate="true"/>
+                        <div class="row col-lg-12">
+                            <div class="form-group col-lg-5">
+                                <input type="button" ng-click="registraAplicacion()" id="btnAceptar" ng-disabled="!editaVM" value="Aceptar" class="btn btn-primary form-control" />
+                            </div>
+                            <div class="form-group col-lg-5">
+                                <input type="button" ng-click="ruta('/')"id="btnCancelar"  value="Cancelar" class="btn btn-default form-control" formnovalidate="true"/>
+                            </div>
                         </div>
                     </div>
                     </fieldset>
                 </fieldset>
             </form>
-
+            </div>
+            </div>
+            <!-- Modal de confirmación -->
             <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                 <div class="modal-dialog modal-sm">
-                     <div id="upModal"  ChildrenAsTriggers="false" UpdateMode="Conditional">
+                 <div class="modal-dialog">
+                     <div id="upModal">
                              <div class="modal-content">
                                  <div class="modal-header">
                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -93,12 +110,35 @@
                                      <label id="lblModalBody"></label>
                                  </div>
                                  <div class="modal-footer" id="footerModal">
-                                     <input type="button" id="btnCerrar"  value="Cerrar" class="btn btn-primary" aria-hidden="true" data-dismiss="modal" />
+                                     <input type="button" id="btnCerrar"  value="Cerrar" class="btn btn-info" aria-hidden="true" data-dismiss="modal" />
                                  </div>
                              </div>
                      </div>
                  </div>
-             </div>                  
+             </div>
+            
+            <!-- Modal confirma modificacion -->
+            <div class="modal fade" id="modalConfirmaAplicacion" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div id="upModal">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">
+                                        <span id="lblModalTitle"></span>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                        <span id="lblModalBody"></span>
+                                </div>
+                                <div class="modal-footer" id="footerModal">
+                                    <button type="button" ng-click="limpiarFormulario()" id="btnEliminar" class="btn btn-primary" >Sí</button>
+                                    <button type="button" ng-click="ruta('/')" class="btn btn-default" aria-hidden="true" data-dismiss="modal">No</button>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>                        
         </section>
     </body>
 </html>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import mx.lania.sicosvac.entidades.Vacuna;
 import mx.lania.sicosvac.oad.VacunasOad;
+import mx.lania.sicosvac.servicios.ServicioInventario;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,6 +31,9 @@ public class ControladorRestVacunas {
     
     @Autowired
     VacunasOad vacunasOad;
+    
+    @Autowired
+    ServicioInventario servInventario;
     
     @RequestMapping(value="",method=RequestMethod.GET)
     public List<Vacuna> getVacuna(){
@@ -53,6 +57,7 @@ public class ControladorRestVacunas {
         LOGGER.debug("Datos recibidos: "+vacuna.getNombre()+" - "+String.valueOf(vacuna.getCodigoVacuna())+" - "+
                 vacuna.getQueEs()+" - "+vacuna.getAfectados()+" - "+vacuna.getAplicadaXCS()+" - "+String.valueOf(vacuna.getEstatus()));
         vacunasOad.save(vacuna);
+        servInventario.creaInventarioInicial(vacuna);
         return vacuna;
     }
 

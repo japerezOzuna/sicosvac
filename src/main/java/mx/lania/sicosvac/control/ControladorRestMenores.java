@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import mx.lania.sicosvac.entidades.Menor;
 import mx.lania.sicosvac.oad.MenoresOad;
+import mx.lania.sicosvac.servicios.ServicioVacunasMenores;
 import org.springframework.web.bind.annotation.RequestParam;
      
 /**
@@ -27,6 +28,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ControladorRestMenores {
     @Autowired
     MenoresOad menoresOad;
+
+    @Autowired
+    ServicioVacunasMenores servVacunasMenores;
     
     @RequestMapping(value="",method = RequestMethod.GET)
     public List<Menor> getMenor(){
@@ -46,6 +50,7 @@ public class ControladorRestMenores {
     @RequestMapping(value="",method=RequestMethod.POST)
     public Menor agregarMenor(@RequestBody Menor menor){
         menoresOad.save(menor);
+        servVacunasMenores.guardaVacunasPorAplicar(menor);
         return menor;
     }
 

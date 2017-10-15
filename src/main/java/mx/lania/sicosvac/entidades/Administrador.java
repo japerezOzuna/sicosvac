@@ -72,16 +72,16 @@ public class Administrador implements Serializable {
     private int activacionAdmin;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "estado")
-    private int estado;
+    @Column(name = "estatus")
+    private int estatus;
     //@JsonIgnore
     @JoinColumn(name = "id_centro", referencedColumnName = "id_centro")
     @ManyToOne(optional = false)
-    private Centro idCentro;
+    private Centro centro;
     //@JsonIgnore
     @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")
     @ManyToOne(optional = false)
-    private Rol idRol;
+    private Rol rol;
 
     public Administrador() {
     }
@@ -90,7 +90,7 @@ public class Administrador implements Serializable {
         this.idAdministrador = idAdministrador;
     }
 
-    public Administrador(Integer idAdministrador, String nombre, String apellidos, String usuario, String password, int codigoActivacion, int activacionEmail, int activacionAdmin, int estado) {
+    public Administrador(Integer idAdministrador, String nombre, String apellidos, String usuario, String password, int codigoActivacion, int activacionEmail, int activacionAdmin, int estatus) {
         this.idAdministrador = idAdministrador;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -99,7 +99,7 @@ public class Administrador implements Serializable {
         this.codigoActivacion = codigoActivacion;
         this.activacionEmail = activacionEmail;
         this.activacionAdmin = activacionAdmin;
-        this.estado = estado;
+        this.estatus = estatus;
     }
 
     public Integer getIdAdministrador() {
@@ -166,28 +166,28 @@ public class Administrador implements Serializable {
         this.activacionAdmin = activacionAdmin;
     }
 
-    public int getEstado() {
-        return estado;
+    public int getEstatus() {
+        return estatus;
     }
 
-    public void setEstado(int estado) {
-        this.estado = estado;
+    public void setEstatus(int estatus) {
+        this.estatus = estatus;
     }
 
-    public Centro getIdCentro() {
-        return idCentro;
+    public Centro getCentro() {
+        return centro;
     }
 
-    public void setIdCentro(Centro idCentro) {
-        this.idCentro = idCentro;
+    public void setCentro(Centro centro) {
+        this.centro = centro;
     }
 
-    public Rol getIdRol() {
-        return idRol;
+    public Rol getRol() {
+        return rol;
     }
 
-    public void setIdRol(Rol idRol) {
-        this.idRol = idRol;
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 
     @Override

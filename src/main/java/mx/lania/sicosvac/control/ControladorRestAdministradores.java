@@ -5,7 +5,7 @@
  */
 package mx.lania.sicosvac.control;
 
-import java.util.Date;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import mx.lania.sicosvac.entidades.Administrador;
 import mx.lania.sicosvac.oad.AdministradoresOad;
+import org.springframework.web.bind.annotation.RequestParam;
 /**
  *
- * @author José Antonio Perez Ozuna
+ * @author José Antonio Pérez Ozuna
  */
 
 @RestController
@@ -34,6 +35,33 @@ public class ControladorRestAdministradores {
     @RequestMapping(value="/{id}",method = RequestMethod.GET)
     public Administrador getAdministradorById(@PathVariable("id") Integer idAdministrador){
         return administradoresOad.findOne(idAdministrador);
+    }
+    
+    @RequestMapping(value="", method=RequestMethod.GET, params = {"idJurisdiccion"})
+    public List<Administrador> getAdministradorByJurisdiccion(@RequestParam("idJurisdiccion") int idJurisdiccion){
+        return administradoresOad.buscarAdministradorPorJurisdiccion(idJurisdiccion);
+    } 
+    
+    @RequestMapping(value="", method=RequestMethod.GET, params = {"idCentro"})
+    public List<Administrador> getAdministradorByCentro(@RequestParam("idCentro") int idCentro){
+        return administradoresOad.buscarAdministradorPorCentro(idCentro);
+    }     
+    
+    @RequestMapping(value="", method=RequestMethod.GET, params = {"estatus"})
+    public List<Administrador> getAdministradorByEstatus(@RequestParam("estatus") int estatus){
+        return administradoresOad.findByEstatus(estatus);
+    }
+    
+    @RequestMapping(value="", method=RequestMethod.GET, params = {"idJurisdiccion","estatus"})
+    public List<Administrador> getAdministradorByJurisEstatus(@RequestParam("idJurisdiccion") int idJurisdiccion,
+                                                              @RequestParam("estatus") int estatus){
+        return administradoresOad.buscarAdministradorPorJurisEstatus(idJurisdiccion,estatus);
+    } 
+    
+    @RequestMapping(value="", method=RequestMethod.GET, params = {"idCentro","estatus"})
+    public List<Administrador> getAdministradorByCentroEstatus(@RequestParam("idCentro") int idCentro,
+                                                               @RequestParam("estatus") int estatus){
+        return administradoresOad.buscarAdministradorPorCentroEstatus(idCentro,estatus);    
     }
     
     @RequestMapping(value="",method=RequestMethod.POST)

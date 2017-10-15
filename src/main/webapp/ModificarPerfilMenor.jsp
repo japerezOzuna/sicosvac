@@ -11,8 +11,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
-        <section>
+    <body><br>
+        <section ng-controller="ControladorModificaMenores">
+            <div class="panel panel-default">
+            <div class="panel-heading">Registro de menores</div>
+            <div class="panel-body">            
             <form name="ModificaPerfilMenor">
                 <fieldset><legend>Datos generales del menor</legend>
                 <div class="form-group col-lg-8">
@@ -25,11 +28,11 @@
                         <span ng-if="ModificaPerfilMenor.apellidos.$invalid && ModificaPerfilMenor.apellidos.$dirty" class="help-block">Este campo es requerido</span>
                     </div>
                     <div class="form-group col-lg-6" ng-class="{'has-error':ModificaPerfilMenor.fechaNac.$invalid && ModificaPerfilMenor.fechaNac.$dirty}">
-                        <input type="date" ng-model="menor.fechaNac" name="fechaNac" id="txtFecha"  class="form-control" placeholder="Fecha de nacimiento" required>
+                        <input type="date" format-date ng-model="menor.fechaNac" name="fechaNac" id="txtFecha"  class="form-control" placeholder="Fecha de nacimiento" required>
                         <span ng-if="ModificaPerfilMenor.fechaNac.$invalid && ModificaPerfilMenor.fechaNac.$dirty" class="help-block">Este campo es requerido</span>
                     </div>
                     <div class="form-group col-lg-6" ng-class="{'has-error':ModificaPerfilMenor.fechaNac.$invalid && ModificaPerfilMenor.fechaNac.$dirty}">
-                        <select ng-model="menor.sexo" id="ddlSexo" class="form-control" >
+                        <select ng-model="menor.sexo" convert-to-number id="ddlSexo" class="form-control" >
                             <option value="0">--Seleccione un Sexo--</option>
                             <option value="1">Hombre</option>
                             <option value="2">Mujer</option>
@@ -41,11 +44,11 @@
                         <span ng-if="ModificaPerfilMenor.curp.$invalid && ModificaPerfilMenor.curp.$dirty" class="help-block">Este campo es requerido</span>
                     </div>
                     <div class="form-group col-lg-12">
-                        <textarea id="txtObservaciones" class="form-control" TextMode="multiline" Columns="50" Rows="4"  placeholder="Observaciones" /></textarea>
+                        <textarea id="txtObservaciones" ng-model="menor.observaciones" class="form-control" TextMode="multiline" Columns="50" Rows="4"  placeholder="Observaciones" /></textarea>
                     </div>
                 </div>
             </fieldset>
-                <fieldset><legend>Direccion</legend>
+                <fieldset><legend>Dirección</legend>
                 <div class="form-group col-lg-8">
                     <div class="form-group col-lg-6" ng-class="{'has-error':ModificaPerfilMenor.calle.$invalid && ModificaPerfilMenor.calle.$dirty}">
                         <input type="text" ng-model="menor.calle" name="calle" id="txtCalle"  class="form-control" placeholder="Calle" required>
@@ -60,7 +63,7 @@
                         <span ng-if="ModificaPerfilMenor.codigoPostal.$invalid && ModificaPerfilMenor.codigoPostal.$dirty" class="help-block">Este campo es requerido</span>
                     </div>
                     <div class="form-group col-lg-4" ng-class="{'has-error':ModificaPerfilMenor.colonia.$invalid && ModificaPerfilMenor.colonia.$dirty}">
-                        <input type="text" ng-model="colonia" name="colonia" id="txtColonia"  class="form-control" placeholder="Colonia" required>
+                        <input type="text" ng-model="menor.colonia" name="colonia" id="txtColonia"  class="form-control" placeholder="Colonia" required>
                         <span ng-if="ModificaPerfilMenor.colonia.$invalid && ModificaPerfilMenor.colonia.$dirty" class="help-block">Este campo es requerido</span>
                     </div>
                     <div class="form-group col-lg-4" ng-class="{'has-error':ModificaPerfilMenor.municipio.$invalid && ModificaPerfilMenor.municipio.$dirty}">
@@ -91,98 +94,140 @@
                         <textarea ng-model="datosTutor" id="txtAVerificaTutor" class="form-control" TextMode="multiline" Columns="50" Rows="4"  disabled/></textarea>
                     </div>
                 </div>
-                <div class="form-group col-lg-8">
+                <div class="row col-lg-12">  
                     <div class="form-group col-lg-4">
-                        <input type="button" id="btnGuardaPerfil"  value="Guardar Perfil" class="btn btn-primary"/>
+                        <input type="button" ng-click="guardaPerfilMenor()" id="btnGuardaPerfil"  value="Guardar Perfil" class="btn btn-primary form-control"/>
                     </div>
                     <div class="form-group col-lg-4">
-                        <input type="button" OnClick=""  id="btnCancelar"  value="Cancelar" class="btn btn-default" />
+                        <input type="button" ng-click="ruta('/administracionPerfiles')"  id="btnCancelar"  value="Cancelar" class="btn btn-default form-control" />
                     </div>
                 </div>
             </fieldset>
-                <fieldset><legend>Historial de vacunacion</legend>
+                <fieldset><legend>Historial de vacunación</legend>
                 <div class="form-group col-lg-8">
                     <div class="form-group col-lg-6">
-                        <select id="ddlVacunas"  class="form-control">
-                        </select>
+                <select id="ddlVacuna" class="form-control"
+                        ng-model="vacuna" 
+                        ng-options="vacuna as vacuna.nombre for vacuna in vacunas track by vacuna.idVacuna">
+                    <option value="">Todas las vacunas</option>
+                </select>
                     </div>
                     <div class="form-group col-lg-6">
-                        <select id="ddlEstatus"  class="form-control">
+                        <select id="ddlEstatus"  class="form-control" ng-model="filtroEstatus">
                             <option Value="">Todas las vacunas</option>
-                            <option Value="Aplicada">Vacunas Aplicadas</option>
-                            <option Value="Por Aplicar">Vacunas por Aplicar</option>
+                            <option value="Aplicada">Vacunas aplicadas</option>
+                            <option Value="Por aplicar">Vacunas por aplicar</option>
                         </select>
                     </div>
                     <div class="form-group col-lg-3">
-                        <input type="button" id="btnFiltrar"  class="btn btn-primary form-control" value="Filtrar" formnovalidate="true"/>
+                        <input type="button" id="btnFiltrar"  ng-click="aplicaFiltro()" class="btn btn-primary form-control" value="Filtrar" formnovalidate="true"/>
                     </div>
                     <div class="form-group col-lg-3">
                         <input type="button" id="btnImprimir"  class="btn btn-default form-control" value="Imprimir Historial" formnovalidate="true"/>
                     </div>
                 </div>
                 <div class="form-group col-lg-8">
-                    <table id="gvCartilla"  AutoGenerateColumns="False" class="table table-striped table-hover table-condensed small-top-margin" GridLines="None" HorizontalAlign="Center" DataKeyNames="id_vacunas_menor" OnSelectedIndexChanged="gvCartilla_SelectedIndexChanged">
-                        <Columns>
-                            <asp:BoundField DataField="Vacuna" HeaderText="Vacuna" />
-                            <asp:BoundField DataField="dosis" HeaderText="Dosis" />
-                            <asp:BoundField DataField="edad_meses" HeaderText="Edad en meses" />
-                            <asp:BoundField DataField="fecha_aplicacion" HeaderText="Fecha de Aplicacion" />
-                            <asp:BoundField DataField="fecha_sugerida" HeaderText="Fecha sugerida" />
-                            <asp:CommandField ShowSelectButton="True" ButtonType="Image" SelectImageUrl="~/image/editar.png" HeaderText="Editar" />
-                        </Columns>
+                    <!-- <div ui-grid="gridOptions" class="grid" ui-grid-selection></div> -->
+                    <table id="gvCartilla" class="table table-responsive table-bordered table-striped table-hover table-condensed small-top-margin">
+                        <thead>
+                        <tr>
+                                <th>Vacuna</th>   
+                                <th>Dosis</th>
+                                <th>Edad en meses</th>
+                                <th>Fecha de aplicación</th>
+                                <th>Fecha sugerida</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="vm in listaVacunasMenores">
+                                <td>{{vm.vacuna.nombre}}</td>
+                                <td>{{vm.catalogoAplicacion.dosis}}</td>
+                                <td>{{vm.catalogoAplicacion.edadMeses}}</td>
+                                <td>{{vm.fechaAplicacion | date:'dd/MM/yyyy'}}</td>
+                                <td>{{vm.fechaSugerida | date:'dd/MM/yyyy'}}</td>
+                                <td><a href="" ng-click="editaVacunaMenor(vm)" data-toggle="tooltip" title="Editar aplicación"><i class="fa fa-pencil-square-o" aria-hidden="true" style="color:orange"></i></a></td>
+                            </tr>    
+                        </tbody>
                     </table>
                 </div>
             </fieldset>
-                <fieldset><legend>Modificar Aplicacion</legend>
+                <fieldset><legend>Modificar aplicación</legend>
                 <div class="form-group col-lg-8">
                     <label>Asigne un estatus a esta Vacuna</label><br />
-                    <select id="ddlEstatusSelect"  class="form-control">
+                    <select id="ddlEstatusSelect" ng-model="vacunaMenor.estatus" ng-disabled="!editaVM" class="form-control">
                         <option Value="Aplicada">Aplicada</option>
-                        <option Value="Por Aplicar">Por Aplicar</option>
+                        <option Value="Por aplicar">Por aplicar</option>
                     </select>
                 </div>
                 <div class="form-group col-lg-8">
-                    <input type="date" id="txtFechaApl"  class="form-control" placeholder="Fecha de aplicacion">
+                    <input type="date" format-date ng-model="vacunaMenor.fechaAplicacion" ng-disabled="!editaVM" id="txtFechaApl"  class="form-control" placeholder="Fecha de aplicacion">
                 </div>
                 <div class="form-group col-lg-8">
-                    <input type="text" id="txtLugarAplicacion"  class="form-control" placeholder="Lugar de Aplicacion">
+                    <input type="text" ng-model="vacunaMenor.lugarAplicacion" ng-disabled="!editaVM" id="txtLugarAplicacion"  class="form-control" placeholder="Lugar de Aplicacion">
                 </div>
                 <div class="form-group col-lg-8">
-                    <input type="text" id="txtNombreAplicador"  class="form-control" placeholder="Nombre del Aplicador">
+                    <input type="text" ng-model="vacunaMenor.nombreAplicador" ng-disabled="!editaVM" id="txtNombreAplicador"  class="form-control" placeholder="Nombre del Aplicador">
                 </div>
                 <div class="form-group col-lg-8">
-                    <input type="text" id="txtNombreFamiliar"  class="form-control" placeholder="¿Quien Acompaño al menor">
+                    <input type="text" ng-model="vacunaMenor.nombreFamiliar" ng-disabled="!editaVM" id="txtNombreFamiliar"  class="form-control" placeholder="¿Quien Acompaño al menor">
                 </div>
                 <div class="form-group col-lg-8">
-                    <input type="text" id="txtParentesco"  class="form-control" placeholder="Parentesco">
+                    <input type="text" ng-model="vacunaMenor.parentesco" ng-disabled="!editaVM" id="txtParentesco"  class="form-control" placeholder="Parentesco">
                 </div>
-                <div class="form-group col-lg-12">
+                <div class="row col-lg-12">
                     <div class="form-group col-lg-4">
-                        <input type="button" id="btnGuardarAplicacion"  value="Guardar Datos de aplicación" class="btn btn-primary form-control"/>
+                        <input type="button" ng-click="confirmaActualizacionVM()" ng-disabled="!editaVM" id="btnGuardarAplicacion"  value="Guardar Datos de aplicación" class="btn btn-primary form-control"/>
                     </div>
                 </div>
             </fieldset>
             </form>
-            <!-- estructura de modal no modificar solo cambiar labels-->
-            <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
-                    <div id="upModal"  ChildrenAsTriggers="false" UpdateMode="Conditional">
+            </div>
+            </div>
+
+            <!-- modal de confirmación genérico-->
+            <div class="modal fade" id="modalConfirmacionVM" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div id="upModal">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     <h4 class="modal-title">
                                         <label id="lblModalTitle"></label></h4>
                                 </div>
-                                <div class="modal-body">
-                                    <label id="lblModalBody"></label>
-                                </div>
+                                    <div class="modal-body">
+                                        <label id="lblModalBody"></label>
+                                    </div>
                                 <div class="modal-footer" id="footerModal">
-                                    <input type="button" id="btnModifica"  value="Si" class="btn btn-primary" aria-hidden="true" data-dismiss="modal" />
+                                    <input type="button" id="btnModifica"  value="Cerrar" class="btn btn-info" aria-hidden="true" data-dismiss="modal" />
                                 </div>
                             </div>
                     </div>
                 </div>
-            </div>
+            </div>            
+            <!-- Modal confirma modificacion -->
+            <div class="modal fade" id="modalConfirmaEstatus" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div id="upModal">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">
+                                        <span id="lblModalTitle"></span>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                        <span id="lblModalBody"></span>
+                                </div>
+                                <div class="modal-footer" id="footerModal">
+                                    <button type="button" id="btnEliminar" class="btn btn-primary" ng-click="guardaVacunaMenor('Por aplicar')">Sí</button>
+                                    <button type="button" class="btn btn-default" aria-hidden="true" data-dismiss="modal">No</button>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>            
         </section>
     </body>
 </html>
+

@@ -11,14 +11,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registro de tutores</title>
     </head>
-    <body>
+    <body><br>
         <section ng-controller="ControladorTutores">
-            <div ng-focus="avisoAlerta" uib-alert 
-                ng-repeat = "alerta in alertas" 
-                ng-class = "'alert-' + alerta.type"
-                close = "quitarAlerta($index)">
-                {{alerta.msg}}    
-            </div>
+            <div class="panel panel-default">
+            <div class="panel-heading">Registro de tutores</div>
+            <div class="panel-body">
             <form name="altaTutor" id="altaTutor">
             <fieldset><legend>Datos generales del tutor</legend>
                 <div class="form-group col-lg-8">
@@ -31,7 +28,7 @@
                         <span ng-if="altaTutor.apellidos.$invalid && altaTutor.apellidos.$dirty" class="help-block">Este campo es requerido</span>
                     </div>
                     <div class="form-group col-lg-6" ng-class="{'has-error':altaTutor.fechanac.$invalid && altaTutor.fechanac.$dirty}">
-                        <input type="date" ng-model="tutor.fechaNac" name="fechanac" id="txtFecha"  class="form-control" placeholder="Fecha de nacimiento" required >
+                        <input type="date" format-date ng-model="tutor.fechaNac" name="fechanac" id="txtFecha"  class="form-control" placeholder="Fecha de nacimiento" required >
                         <span ng-if="altaTutor.fechanac.$invalid && altaTutor.fechanac.$dirty" class="help-block">Este campo es requerido</span>
                     </div>
                     <div class="form-group col-lg-6" ng-class="{'has-error':altaTutor.sexo.$invalid && altaTutor.sexo.$dirty}">
@@ -47,7 +44,7 @@
                     </div>
                 </div>
             </fieldset>
-            <fieldset><legend>Direccion</legend>
+            <fieldset><legend>Dirección</legend>
                 <div class="form-group col-lg-8" >
                     <div class="form-group col-lg-6" ng-class="{'has-error':altaTutor.calle.$invalid && altaTutor.calle.$dirty}">
                         <input type="text" ng-model="tutor.calle" name="calle" id="txtCalle"  class="form-control" placeholder="Calle" required>
@@ -95,22 +92,24 @@
                     <div class="form-group col-lg-6" ng-class="{'has-error':altaTutor.password2.$invalid && altaTutor.password2.$dirty}">
                         <input type="password" ng-model="passwordConfirma" name="password2" id="txtConfirmaContraseña"  class="form-control" placeholder="Confirme Contraseña" required>
                         <span ng-if="altaTutor.password2.$invalid && altaTutor.password2.$dirty" class="help-block">Este campo es requerido</span>
-                    </div>
+                    </div>                  
                     <div class="row col-lg-8">
                         <div class="form-group col-lg-5">
                             <input type="submit" ng-click="confirmaAltaPerfilTutor()" ng-disabled="altaTutor.$invalid" id="btnConfirmaAltaPerfiltutor" value="Guardar perfil" class="btn btn-primary form-control" />
                         </div>
                         <div class="form-group col-lg-5">
-                            <input type="button" OnClick="location.href ='AdministracionPerfiles.jsp'" id="btnCancelarAltaPerfiltutor" value="Cancelar" class="btn btn-default form-control" formnovalidate="true"/>
+                            <input type="button" ng-click="ruta('/administracionPerfiles')" id="btnCancelarAltaPerfiltutor" value="Cancelar" class="btn btn-default form-control"/>
                         </div>
                     </div>
+                </div>                      
                 </div>
+            </div>
             </fieldset>
             </form>            
             <!-- modal de confirmacion o error-->
             <div class="modal fade" id="modalConfirmacionError" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
-                    <div id="upModal"  ChildrenAsTriggers="false" UpdateMode="Conditional">
+                <div class="modal-dialog">
+                    <div id="upModal">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -121,7 +120,7 @@
                                     <span id="lblModalBody"></span>
                                 </div>
                                 <div class="modal-footer" id="footerModal">
-                                    <input type="button" OnClick="location.href ='AdministracionPerfiles.jsp'" id="btnCerrar"  value="Cerrar" class="btn btn-primary" aria-hidden="true" data-dismiss="modal" />
+                                    <input type="button" ng-click="ruta('/administracionPerfiles')" id="btnCerrar"  value="Cerrar" class="btn btn-info" aria-hidden="true" data-dismiss="modal" />
                                 </div>
                             </div>
                     </div>

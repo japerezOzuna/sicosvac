@@ -23,7 +23,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 /**
  *
- * @author José Antonio Perez Ozuna
+ * @author José Antonio Pérez Ozuna
  */
 public class Aplicacion implements WebApplicationInitializer{
 
@@ -61,10 +61,11 @@ public class Aplicacion implements WebApplicationInitializer{
         characterEncoding.addMappingForUrlPatterns(dispatcherTypes, true, "/*");
         characterEncoding.setAsyncSupported(true);
         
-        // Filtro de Sitemesh
+        /*// Filtro de Sitemesh 
         ConfigurableSiteMeshFilter filtroSitemesh = new ConfigurableSiteMeshFilter();
         FilterRegistration.Dynamic sitemesh = contexto.addFilter("sitemesh", filtroSitemesh);
         sitemesh.addMappingForUrlPatterns(dispatcherTypes, true, "/*");
+        */        
     }
     
 }

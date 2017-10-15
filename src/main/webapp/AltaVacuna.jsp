@@ -14,17 +14,14 @@
     </head>
     <body><br>
       <section ng-controller = "ControladorVacunas">   
-            <div ng-focus="avisoAlerta" uib-alert 
-                ng-repeat = "alerta in alertas" 
-                ng-class = "'alert-' + alerta.type"
-                close = "quitarAlerta($index)">
-                {{alerta.msg}}    
-            </div>
-          <form name="altaVacuna">
-        <fieldset><legend>Alta de vacunas</legend>
-            <div class="form-group">
+        <div class="panel panel-default">
+        <div class="panel-heading">Registro de vacunas</div>
+        <div class="panel-body">
+        <form name="altaVacuna">
+        <fieldset><legend>Agregue los datos de la vacuna</legend>
+            <!--<div class="form-group">
                 <label class="col-lg-12">Para dar de alta una vacuna llene los siguientes campos:</label>
-            </div>
+            </div>-->
             <div class="row col-lg-8">
                     <div class="form-group col-lg-12" ng-class="{'has-error':altaVacuna.nombre.$invalid && altaVacuna.nombre.$dirty}">
                         <input type="text" ng-model="vacuna.nombre" name="nombre" id="txtNombre" class="form-control" placeholder="Nombre de la vacuna:" required>                                                
@@ -173,11 +170,12 @@
                     <input type="button" ng-click="confirmaAlta()" ng-disabled="altaVacuna.$invalid" id="btnConfirmaAlta" value="Guardar Vacuna" class="btn btn-primary form-control" />
                 </div>
                 <div class="form-group col-lg-5">
-                    <input type="button" OnClick="location.href ='AdministracionVacunas.jsp'" id="btnCancelarAlta" value="Cancelar" class="btn btn-default form-control" formnovalidate="true" OnClick="" />
+                    <input type="button" ng-click="ruta('/administracionVacunas')" id="btnCancelarAlta" value="Cancelar" class="btn btn-default form-control" formnovalidate="true" OnClick="" />
                 </div>
             </div>
         </form>          
-    
+            </div>
+            </div>
 <!-- Modal de confirmacion de alta-->
     <div class="modal fade" id="modalConfirmaAlta" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -260,7 +258,7 @@
             <p>No se han agregado dosis para esta vacuna, se requiere al menos una dosis</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div>

@@ -12,8 +12,10 @@
         <title>Actualizar inventario</title>
     </head>
     <body><br/>
-        <section ng-controller = "ControladorInventario"> 
-        <fieldset><legend>Actualizar Inventario de Centro de Salud"</legend>
+        <section ng-controller = "ControladorInventario">
+        <div class="panel panel-default">
+        <div class="panel-heading">Actualizar Inventario del Centro de Responsabilidad</div>
+        <div class="panel-body">        
             <br/>
             <fieldset><legend>1.-Seleccione la jurisdicción sanitaria</legend>
                     <div class="row col-lg-6">
@@ -30,7 +32,7 @@
                     </div>
             </fieldset>
             <br/>
-            <fieldset><legend>2.-Seleccione un Centro de responsabilidad</legend>                 
+            <fieldset><legend>2.-Seleccione un centro de responsabilidad</legend>                 
                 <div class="row col-lg-6">    
                     <div class="form-group col-lg-12">
                             <label id="lblCentroSalud"  Font-Bold="True">Seleccione el centro de responsabilidad</label>
@@ -67,8 +69,8 @@
                             <br />
                             <input type="number" ng-model="cantidad" id="txtCantidad" name="income" class="form-control">
                         </div>
-                        <div class="form-group col-lg-12">
-                            <div class="form-group col-lg-9">
+                        <div class="row col-lg-12">
+                            <div class="form-group col-lg-11">
                                 <input type="button" ng-click="agregarAInventario()" id="btnAgregaAInventario"  value="Agregar a nuevo Inventario" class="btn btn-primary form-control"/>
                             </div>
                         </div>
@@ -103,9 +105,13 @@
                         <div class="form-group col-lg-5">
                             <input type="button" ng-click="confirmarInventario()" id="btnRegistraInventario"  class="btn btn-primary form-control" value="Guardar Nuevo Inventario"/>
                         </div>
+                        <div class="form-group col-lg-5">
+                            <input type="button" onClick="location.href ='/sicosvac/'" id="btnCancelarAlta" value="Cancelar" class="btn btn-default form-control" formnovalidate="true"  />
+                        </div>                        
                     </div>
         </fieldset>
-
+        </div>
+        </div>
 <!--Modal de confirmación-->        
     <div class="modal fade" id="modalConfirmaInventario" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -162,7 +168,7 @@
             <p>La cantidad ha sido agregada al inventario</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div>

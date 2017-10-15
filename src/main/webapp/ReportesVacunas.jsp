@@ -11,16 +11,37 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Reportes de vacunas aplicadas</title>
     </head>
-    <body>
+    <body><br>
+        <section>
+        <div class="panel panel-default">
+        <div class="panel-heading">Reportes de vacunas aplicadas</div>
+        <div class="panel-body">  
             <form name="ReportaVacuna">
-            <fieldset id="pnlReportesVacunas"><legend>Reportes de vacunas aplicadas</legend>
+            <fieldset id="pnlReportesVacunas"><!--<legend>Reportes de vacunas aplicadas</legend>-->
                 <div id="divfiltro" >
                     <div class="form-group col-lg-12">
-                        <label id="lblfiltro">Puede filtrar la lista por centro de salud</label>
+                        <label id="lblfiltro">Seleccione la Jurisdicción Sanitaria</label>
                     </div>
                     <div class="form-group col-lg-8">
                         <div class="form-group col-lg-6">
-                            <select id="ddlCentroSalud"  class="form-control">
+                            <select id="ddlJurisdiccion" class="form-control"
+                                    ng-model="jurisdiccion"
+                                    ng-options="jurisdiccion as jurisdiccion.nombreJurisdiccion for jurisdiccion in listaJurisdicciones track by jurisdiccion.idJurisdiccion"
+                                    ng-change="llenaListaCentros(jurisdiccion)">
+                                <option>-Seleccione la Jurisdicción Sanitaria</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group col-lg-12">
+                        <label id="lblfiltro">Selecctione el Centro de Responsabilidad</label>
+                    </div>
+                    <div class="form-group col-lg-8">
+                        <div class="form-group col-lg-6">
+                            <select id="ddlCentroSalud" class="form-control"
+                                    ng-model="centro"
+                                    ng-options="centro as centro.nombreCentro for centro in listaCentros track by centro.idCentro"
+                                    ng-change="llenaListaVacunas(centro)">
                             </select>
                         </div>
                         <div class="form-group col-lg-3">
@@ -61,20 +82,21 @@
                     <input type="text" ng-model="reporteVacuna.fechaAplicacion" id="txtFechaAplicacion"  name="fechaAplicacion" class="form-control" placeholder="Fecha de Aplicacion" required disabled>
                     <span ng-if="ReportaVacuna.fechaAplicacion.$invalid && ReportaVacuna.fechaAplicacion.$dirty" class="help-block">Este campo es requerido</span>
                 </div>
-                <div class="form-group col-lg-12">
+                <div class="row  col-lg-12">
                     <div class="form-group col-lg-4">
                         <input type="button" id="btnAutorizaReporte"  value="Autorizar Reporte" class="btn btn-primary form-control"/>
                     </div>
                     <div class="form-group col-lg-4" >
-                        <input type="button" id="btnDenegarReporte"  value="Denegar Reporte" class="btn btn-primary form-control"/>
+                        <input type="button" id="btnDenegarReporte"  value="Denegar Reporte" class="btn btn-default form-control"/>
                     </div>
                 </div>
             </fieldset>
           </form>
+        </section>
             <!-- estructura de modal no modificar solo cambiar labels-->
             <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div id="upModal"  ChildrenAsTriggers="false" UpdateMode="Conditional">
+                    <div id="upModal">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

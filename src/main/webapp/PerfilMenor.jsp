@@ -11,8 +11,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registro de menores</title>
     </head>
-    <body>
+    <body><br>
         <section ng-controller="ControladorMenores">
+        <div class="panel panel-default">
+            <div class="panel-heading">Registro de menores</div>
+            <div class="panel-body">
             <form name="altaMenor" id="altaMenor">
                 <fieldset><legend>Datos generales del menor</legend>
                 <div class="form-group col-lg-8">
@@ -25,7 +28,7 @@
                         <span ng-if="altaMenor.apellidos.$invalid && altaMenor.apellidos.$dirty" class="help-block">Este campo es requerido</span>
                     </div>
                     <div class="form-group col-lg-6" ng-class="{'has-error':altaMenor.fechanac.$invalid && altaMenor.fechanac.$dirty}">
-                        <input type="date" ng-model="menor.fechaNac" id="txtFecha" name="fechanac"  class="form-control" placeholder="Fecha de nacimiento" required>
+                        <input type="date" format-date ng-model="menor.fechaNac" id="txtFecha" name="fechanac"  class="form-control" placeholder="Fecha de nacimiento" required>
                         <span ng-if="altaMenor.fechanac.$invalid && altaMenor.fechanac.$dirty" class="help-block">Este campo es requerido</span>
                     </div>
                     <div class="form-group col-lg-6" ng-class="{'has-error':altaMenor.sexo.$invalid && altaMenor.sexo.$dirty}">
@@ -73,7 +76,7 @@
                     </div>
                 </div>
             </fieldset>
-                <fieldset id="panel1"  ><legend>Datos de tutor</legend>
+                <fieldset id="panel1"  ><legend>Datos del tutor</legend>
                 <div class="row col-lg-8">
                     <div class="form-group col-lg-12">
                         <label id="Label2">1.-Introduzca un Curp o un Usuario</label>
@@ -91,36 +94,38 @@
                         <textarea ng-model="datosTutor" id="txtAVerificaTutor" class="form-control" TextMode="multiline" Columns="50" Rows="4"  disabled required/></textarea>
                     </div>
                 </div>
-                <div class="col-lg-8">
+                <div class="row col-lg-8">
                     <div class="form-group col-lg-5">
                         <input type="submit" ng-click="guardaPerfilMenor()" ng-disabled="altaMenor.$invalid" id="btnGuardaPerfil"  value="Guardar Perfil" class="btn btn-primary form-control"/>
                     </div>
                     <div class="form-group col-lg-5">
-                        <input type="button" OnClick="location.href ='AdministracionPerfiles.jsp'"  id="btnCancelar"  value="Cancelar" class="btn btn-default form-control" />
+                        <input type="button" ng-click="ruta('/administracionPerfiles')"  id="btnCancelar"  value="Cancelar" class="btn btn-default form-control" />
                     </div>
                 </div>
             </fieldset>
             </form>
             <!-- modal de confirmacion o error-->
             <div class="modal fade" id="modalConfirmaAltaPerfilMenor" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
-                    <div id="upModal"  ChildrenAsTriggers="false" UpdateMode="Conditional">
+                <div class="modal-dialog">
+                    <div id="upModal">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     <h4 class="modal-title">
-                                        <span id="lblModalTitle"></spanl></h4>
+                                        <span id="lblModalTitle"></span></h4>
                                 </div>
                                 <div class="modal-body">
                                     <span id="lblModalBody"></span>
                                 </div>
                                 <div class="modal-footer" id="footerModal">
-                                        <input type="button" ng-click="location.href ='AdministracionPerfiles.jsp'" id="btnCerrar"  value="Cerrar" class="btn btn-primary" aria-hidden="true" data-dismiss="modal" />
+                                        <input type="button" ng-click="location.href ='AdministracionPerfiles.jsp'" id="btnCerrar"  value="Cerrar" class="btn btn-info" aria-hidden="true" data-dismiss="modal" />
                                 </div>
                             </div>
                     </div>
                 </div>
             </div>
+            </div>
+        </div>
         </section>
     </body>
 </html>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import mx.lania.sicosvac.entidades.CatalogoAplicacionVacuna;
 import mx.lania.sicosvac.oad.CatalogoAplicacionesVacunasOad;
+import mx.lania.sicosvac.servicios.ServicioVacunasMenores;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -26,6 +27,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ControladorRestCatalogoAplicaciones {
     @Autowired
     CatalogoAplicacionesVacunasOad catalogoAplicacionesOad;
+    
+    @Autowired
+    ServicioVacunasMenores servVacunasMenores;
     
     @RequestMapping(value="",method=RequestMethod.GET)
     public List<CatalogoAplicacionVacuna> getCatalogoAplicacion(){
@@ -45,6 +49,7 @@ public class ControladorRestCatalogoAplicaciones {
     @RequestMapping(value="",method=RequestMethod.POST)
     public CatalogoAplicacionVacuna agregarCatalogoApliacion(@RequestBody CatalogoAplicacionVacuna catalogoAplicacionVacuna){
         catalogoAplicacionesOad.save(catalogoAplicacionVacuna);
+        servVacunasMenores.guardaDosisPorAplicar(catalogoAplicacionVacuna);
         return catalogoAplicacionVacuna;
     }
 

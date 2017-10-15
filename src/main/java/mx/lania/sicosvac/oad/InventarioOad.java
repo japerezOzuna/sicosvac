@@ -19,4 +19,11 @@ public interface InventarioOad extends JpaRepository<Inventario, Integer>{
     
     @Query(value="SELECT i FROM Inventario i WHERE i.centro.idCentro=?1")
     public List<Inventario> buscarInventarioPorCentro(int idCentro);
+    
+    @Query(value="SELECT i FROM Inventario i WHERE i.centro.idCentro=?1 and i.cantidad>0")
+    public List<Inventario> buscarInventarioDisponiblePorCentro(int idCentro);
+    
+    @Query(value="SELECT i FROM Inventario i WHERE i.cantidad>0")
+    public List<Inventario> buscarInventarioDisponible();
+    
 }

@@ -11,10 +11,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Modificar perfil de usuario</title>
     </head>
-    <body>
+    <body><br>
         <section>
+        <div class="panel panel-default">
+        <div class="panel-heading">Administración de usuarios</div>
+        <div class="panel-body">              
             <form name="modificaPerfil">
-                <fieldset id="PnlPerfil"><legend>1.- Aquí podrá Modificar su información de perfil</legend>
+                <fieldset id="PnlPerfil"><legend>1.- Aquí podrá modificar la información de su perfil</legend>
                 <div class="form-group col-lg-8">
                     <div class="form-group col-lg-12" ng-class="{'has-error':modificaPerfil.nombre.$invalid && modificaPerfil.nombre.$dirty}">
                         <label id="lblnombre">Nombre(s):</label>
@@ -26,13 +29,13 @@
                         <input type="text" ng-model="Administrador.apellidos" name="apellidos" id="txtApellidos"  class="form-control" placeholder="Apellido(s):" required>
                         <span ng-if="modificaPerfil.apellidos.$invalid && modificaPerfil.apellidos.$dirty" class="help-block">Este campo es requerido</span>
                     </div>
-                    <div class="form-group col-lg-12" ng-class="{'has-error':modificaPerfil.usuario.$invalid && modificaPerfil.usuario.$dirty}">
+                    <div class="form-group col-lg-6" ng-class="{'has-error':modificaPerfil.usuario.$invalid && modificaPerfil.usuario.$dirty}">
                         <label id="Label2">Usuario:</label>
                         <input type="email" ng-model="Administrador.usuario" name="usuario" id="txtcorreo"  class="form-control" placeholder="Usuario:" required disabled>
                         <span ng-if="modificaPerfil.usuario.$invalid && modificaPerfil.usuario.$dirty" class="help-block">Este campo es requerido</span>
                         <a href="" id="lbCambiaCorreo"  ng-show="!modEmail" ng-click="confirmaEmail()" >Cambiar Correo</a>
                     </div>
-                    <div id="Confirmacorreo" class="form-group col-lg-12" ng-show="modEmail" ng-class="{'has-error':modificaPerfil.usuarioConfirma.$invalid && modificaPerfil.usuarioConfirma.$dirty}">
+                    <div id="Confirmacorreo" class="form-group col-lg-6" ng-show="modEmail" ng-class="{'has-error':modificaPerfil.usuarioConfirma.$invalid && modificaPerfil.usuarioConfirma.$dirty}">
                         <label id="Label6">Confirma Usuario:</label>
                         <input type="email"  ng-model="usuarioConfirma" name="usuarioConfirma" id="txtConfirmaCorreo"  class="form-control" placeholder="Confirme Usuario:" required>
                         <span ng-if="modificaPerfil.usuarioConfirma.$invalid && modificaPerfil.usuarioConfirma.$dirty" class="help-block">Este campo es requerido</span>
@@ -64,10 +67,12 @@
                 </div>
             </fieldset>                
             </form>
+        </div>
+        </div>
             <!-- estructura de modal no modificar solo cambiar labels-->
             <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div id="upModal"  ChildrenAsTriggers="false" UpdateMode="Conditional">
+                    <div id="upModal">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -78,7 +83,7 @@
                                     <label id="lblModalBody"></label>
                                 </div>
                                 <div class="modal-footer" id="footerModal">
-                                    <input type="button" id="btnSeguir"  value="Si" class="btn btn-primary" aria-hidden="true" data-dismiss="modal"/>
+                                    <input type="button" id="btnSeguir"  value="Si" class="btn btn-info" aria-hidden="true" data-dismiss="modal"/>
                                 </div>
                             </div>
                     </div>

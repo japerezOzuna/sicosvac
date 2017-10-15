@@ -1,12 +1,6 @@
-<%-- 
-    Document   : index
-    Created on : 14/08/2017, 08:38:44 PM
-    Author     : José Antonio Pérez Ozuna
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<!DOCTYPE html>
 <html ng-app="appSicosvac">
     <head>        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -14,12 +8,9 @@
         <meta name="description" content="">
     	<meta name="author" content="José Antonio Pérez Ozuna">
         
-        <title>SICOSVAC</title>
+        <title>Sistema de Control y Seguimiento de Vacunación en Menores</title>
         <!-- Bootstrap Core CSS -->
         <link href="theme/css/bootstrap.min.css" rel="stylesheet">
-        
-        <!-- Hoja de estilos de UI-GRID de angular -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.7/ui-grid.min.css" rel="stylesheet">
 
         <!-- Custom CSS -->
         <link href="theme/css/sb-admin.css" rel="stylesheet">
@@ -41,13 +32,11 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular.js"></script> 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular-resource.js"></script>    
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.7/ui-grid.min.js"></script>
         <script src="https://code.angularjs.org/1.6.2/angular-route.js"></script> 
         <script src="js/app_1.js" type = "text/javascript"></script>
        <!-- <script src="js/factory.js" type = "text/javascript"></script>
         <script src="js/ControladorVacunas.js" type = "text/javascript"></script>
-        <script src="js/ControladorInventario.js" type = "text/javascript"></script> --> 
-       <base href="/sicosvac/">
+        <script src="js/ControladorInventario.js" type = "text/javascript"></script> -->     
     </head>
         <body>
             <div id="wrapper">
@@ -62,19 +51,16 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand" href="#">
-                            <!--Sistema de Control y Seguimiento de Vacunación en Menores-->
-                            <img src="https://image.ibb.co/kMfyow/translogover_b4.png">
-                            <!--<img src="https://image.ibb.co/dkJy5b/translogover_b3.png">-->
+                            <img alt="" src="imagenes/logo440.png">Sistema de Control y Seguimiento de Vacunación en Menores
                         </a>
                     </div>
                     <!-- Top Menu Items -->
-
                     <ul class="nav navbar-right top-nav">
                         <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>&nbsp;Bienvenido:&nbsp;<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>&nbsp;Bienvenido:&nbsp;<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#/perfilAdmin"><i class="fa fa-fw fa-user"></i>&nbsp;Perfil&nbsp;</a>
+                                    <a href="PerfilAdmin.jsp"><i class="fa fa-fw fa-user"></i>&nbsp;Perfil&nbsp;</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
@@ -87,43 +73,43 @@
                     <div class="collapse navbar-collapse navbar-ex1-collapse">
                         <ul class="nav navbar-nav side-nav demo">
                             <li>
-                                <a href="#"><i class="fa fa-home fa-lg" aria-hidden="true"></i>&nbsp;Inicio</a>
+                                <a href=""><i class="fa fa-home" aria-hidden="true"></i>&nbsp;Inicio</a>
                             </li>
                             <li>
-                                <a href="javascript:;" data-toggle="collapse" data-target="#Vacunador"><i class="fa fa-eyedropper fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;Vacunador<i class="fa fa-fw fa-caret-down"></i></a>
+                                <a href="javascript:;" data-toggle="collapse" data-target="#Vacunador"><i class="fa fa-eyedropper" aria-hidden="true"></i>&nbsp;&nbsp;Vacunador<i class="fa fa-fw fa-caret-down"></i></a>
                                 <ul id="Vacunador" class="collapse">
                                     <li>
-                                        <a href="#/actualizarCartilla">&nbsp;Actualizar Cartilla de salud</a>
+                                        <a href="ActualizarCartilla.jsp">&nbsp;Actualizar Cartilla de salud</a>
                                     </li>
                                     <li>
-                                        <a href="#/administracionPerfiles">&nbsp;Administrar Perfiles de menores y tutores</a>
+                                        <a href="#/AdministracionPerfiles">&nbsp;Administrar Perfiles de menores y tutores</a>
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="javascript:;" data-toggle="collapse" data-target="#Administrador"><i class="fa fa-user-md fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;Administrador<i class="fa fa-fw fa-caret-down"></i></a>
+                                <a href="javascript:;" data-toggle="collapse" data-target="#Administrador"><i class="fa fa-user-md" aria-hidden="true"></i>&nbsp;&nbsp;Administrador<i class="fa fa-fw fa-caret-down"></i></a>
                                 <ul id="Administrador" class="collapse">
                                     <li>
-                                        <a href="#/actualizarInventario">&nbsp;Actualizar Inventario de vacunas</a> 
+                                        <a href="ActualizarInventario.jsp">&nbsp;Actualizar Inventario de vacunas</a> 
                                     </li>
                                     <li>                                    
-                                        <a href="#/administracionPersonal">&nbsp;Administracion Personal</a>                                    
+                                        <a href="AdministracionPersonal.jsp">&nbsp;Administracion Personal</a>                                    
                                     </li>
                                     <li>                                    
-                                        <a href="#/reportesVacunas">&nbsp;Reportes de vacunas aplicadas</a>                                    
+                                        <a href="ReportesVacunas.jsp">&nbsp;Reportes de vacunas aplicadas</a>                                    
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="javascript:;" data-toggle="collapse" data-target="#especiales"><i class="fa fa-asterisk fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;Actividades especiales<i class="fa fa-fw fa-caret-down"></i></a>
+                                <a href="javascript:;" data-toggle="collapse" data-target="#especiales"><i class="fa fa-asterisk" aria-hidden="true"></i>&nbsp;&nbsp;Actividades especiales<i class="fa fa-fw fa-caret-down"></i></a>
                                 <ul id="especiales" class="collapse">
                                     <li>                                    
-                                        <a href="#/administracionVacunas">&nbsp;Administracion de Vacunas</a>                                    
+                                        <a href="AdministracionVacunas.jsp">&nbsp;Administracion de Vacunas</a>                                    
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="#/informacion"><i class="fa fa-fw fa-desktop"></i>&nbsp;Información</a>
+                                <a href=""><i class="fa fa-fw fa-desktop"></i>&nbsp;Acerca de...</a>
                             </li>
                         </ul>
                     </div>
