@@ -29,5 +29,7 @@ public interface AdministradoresOad extends JpaRepository<Administrador, Integer
     @Query(value="SELECT a FROM Administrador a WHERE a.centro.idCentro=?1")
     public List<Administrador> buscarAdministradorPorCentro(int idCentro);
     
+    public Administrador findOneByUsername(String username);
+    
     public List<Administrador> findByEstatus(int estatus);    
 }

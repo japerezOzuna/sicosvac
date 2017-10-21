@@ -77,9 +77,9 @@
                     <input type="text" ng-model="administrador.apellidos" ng-disabled="!editaUsuario" name="apellidos" id="txtApellidos"  class="form-control" placeholder="Apellido(s):" required>
                     <span ng-if="administraUsuario.apellidos.$invalid && administraUsuario.apellidos.$dirty" class="help-block">Este campo es requerido</span>
                 </div>
-                <div class="form-group col-lg-8" ng-class="{'has-error':administraUsuario.usuario.$invalid && administraUsuario.usuario.$dirty}">
-                    <input type="email" ng-model="administrador.usuario" ng-disabled="!editaUsuario" name="usuario" id="txtcorreo"  class="form-control" placeholder="Usuario:" required>
-                    <span ng-if="administraUsuario.usuario.$invalid && administraUsuario.usuario.$dirty" class="help-block">Este campo es requerido</span>
+                <div class="form-group col-lg-8" ng-class="{'has-error':administraUsuario.usuario.$invalid && administraUsuario.username.$dirty}">
+                    <input type="email" ng-model="administrador.username" ng-disabled="!editaUsuario" name="username" id="txtcorreo"  class="form-control" placeholder="Usuario:" required>
+                    <span ng-if="administraUsuario.username.$invalid && administraUsuario.username.$dirty" class="help-block">Este campo es requerido</span>
                 </div>
                 <div class="form-group col-lg-8">
                     <label id="Label1">Asigne un rol a este usuario</label><br />
@@ -90,13 +90,13 @@
                         <option>-Seleccione el para de usuario</option>
                     </select>
                 </div>
-                <div class="form-group col-lg-8" ng-class="{'has-error':administraUsuario.estatus.$invalid && administraUsuario.usuario.$dirty}">
+                <div class="form-group col-lg-8" ng-class="{'has-error':administraUsuario.estatus.$invalid && administraUsuario.estatus.$dirty}">
                     <label id="lblestatus">Asigne un estatus a la cuenta ya sea Activada o Desactivada</label><br />
                     <select id="ddlEstatusSelect" ng-model="administrador.estatus" ng-disabled="!editaUsuario" name="estatus" class="form-control">
                         <option Value="1">Activada</option>
                         <option Value="2">Desactivada</option>
                     </select>
-                    <span ng-if="administraUsuario.usuario.$invalid && administraUsuario.estatus.$dirty" class="help-block">Este campo es requerido</span>
+                    <span ng-if="administraUsuario.estatus.$invalid && administraUsuario.estatus.$dirty" class="help-block">Este campo es requerido</span>
                 </div>
                 <div class="form-group row col-lg-12">
                     <div class="form-group col-lg-3">

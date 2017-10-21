@@ -46,10 +46,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/")
-                .access("hasRole('USUARIO') or hasRole('VACUNADOR') or hasRole('ADMIN') or hasRole('SUPER_ADMIN')")
-                .antMatchers("/newuser/**", "/delete-user-*").access("hasRole('ADMIN')")
-                .antMatchers("/edit-user-*").access("hasRole('ADMIN') or hasRole('DBA')")
+        http.authorizeRequests()
+                .antMatchers("/").access("hasRole('SUPER_ADMIN')")
+                .antMatchers("/", "/").access("hasRole('ADMIN')")
+                .antMatchers("/","/").access("hasRole('VACUNADOR') or hasRole('USUARIO')")
                 .and().formLogin().loginPage("/login")
                 .loginProcessingUrl("/login").usernameParameter("ssoId").passwordParameter("password").and()
                 .rememberMe().rememberMeParameter("remember-me").tokenRepository(tokenRepository)

@@ -21,6 +21,14 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 /**
  *
  * @author José Antonio Perez Ozuna
@@ -29,7 +37,7 @@ import javax.validation.constraints.Size;
 @Table(name = "administradores")
 //@NamedQueries({
 //    @NamedQuery(name = "Administradores.findAll", query = "SELECT a FROM administradores a")})
-public class Administrador implements Serializable {
+public class Administrador implements Serializable, UserDetails {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -52,7 +60,7 @@ public class Administrador implements Serializable {
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "usuario")
-    private String usuario;
+    private String username;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -90,11 +98,11 @@ public class Administrador implements Serializable {
         this.idAdministrador = idAdministrador;
     }
 
-    public Administrador(Integer idAdministrador, String nombre, String apellidos, String usuario, String password, int codigoActivacion, int activacionEmail, int activacionAdmin, int estatus) {
+    public Administrador(Integer idAdministrador, String nombre, String apellidos, String username, String password, int codigoActivacion, int activacionEmail, int activacionAdmin, int estatus) {
         this.idAdministrador = idAdministrador;
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.usuario = usuario;
+        this.username = username;
         this.password = password;
         this.codigoActivacion = codigoActivacion;
         this.activacionEmail = activacionEmail;
@@ -126,12 +134,12 @@ public class Administrador implements Serializable {
         this.apellidos = apellidos;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -190,6 +198,40 @@ public class Administrador implements Serializable {
         this.rol = rol;
     }
 
+    //Sobreescritura de métodos de Spring Security
+    @JsonIgnore
+    @Override
+    public boolean isEnabled() {
+            return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isCredentialsNonExpired() {
+            return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonLocked() {
+            return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonExpired() {
+            return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+            Collection<GrantedAuthority> authorities = new ArrayList<>();
+            authorities.add(new SimpleGrantedAuthority(rol.getDescripcion()));
+            return authorities;
+    }
+    //Hasta aquí Spring Security
+    
     @Override
     public int hashCode() {
         int hash = 0;

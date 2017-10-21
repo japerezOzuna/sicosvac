@@ -1397,7 +1397,7 @@ appSicosvac.controller('ControladorAdministracionPersonal',['$scope','$location'
         $scope.gridOptions.columnDefs = [
           { field:'nombre',displayName:'Nombre'},
           { field:'apellidos',displayName:'Apellidos'},
-          { field:'usuario',displayName:'Usuario'}
+          { field:'username',displayName:'Usuario'}
         ];     
         //Implementacion de evento al hacer click en una fila
         $scope.gridOptions.onRegisterApi = function( gridApi ) {
@@ -1412,7 +1412,7 @@ appSicosvac.controller('ControladorAdministracionPersonal',['$scope','$location'
             $scope.gridOptions.columnDefs = [
               { field:'nombre',displayName:'Nombre'},
               { field:'apellidos',displayName:'Apellidos'},
-              { field:'usuario',displayName:'Usuario'}
+              { field:'username',displayName:'Usuario'}
             ];                        
             $scope.gridOptions.data = datos;
         };            
