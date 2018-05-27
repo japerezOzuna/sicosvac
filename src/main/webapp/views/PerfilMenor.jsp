@@ -99,7 +99,7 @@
                         <input type="submit" ng-click="guardaPerfilMenor()" ng-disabled="altaMenor.$invalid" id="btnGuardaPerfil"  value="Guardar Perfil" class="btn btn-primary form-control"/>
                     </div>
                     <div class="form-group col-lg-5">
-                        <input type="button" ng-click="ruta('/administracionPerfiles')"  id="btnCancelar"  value="Cancelar" class="btn btn-default form-control" />
+                        <input type="button" ng-click="ruta('administracionPerfiles')"  id="btnCancelar"  value="Cancelar" class="btn btn-default form-control" />
                     </div>
                 </div>
             </fieldset>

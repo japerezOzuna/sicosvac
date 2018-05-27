@@ -170,7 +170,7 @@
                     <input type="button" ng-click="confirmaAlta()" ng-disabled="altaVacuna.$invalid" id="btnConfirmaAlta" value="Guardar Vacuna" class="btn btn-primary form-control" />
                 </div>
                 <div class="form-group col-lg-5">
-                    <input type="button" ng-click="ruta('/administracionVacunas')" id="btnCancelarAlta" value="Cancelar" class="btn btn-default form-control" formnovalidate="true" OnClick="" />
+                    <input type="button" ng-click="ruta('administracionVacunas')" id="btnCancelarAlta" value="Cancelar" class="btn btn-default form-control" formnovalidate="true" OnClick="" />
                 </div>
             </div>
         </form>          

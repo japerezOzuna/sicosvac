@@ -31,21 +31,21 @@
             </div>            
             </div>
             <div class="row col-lg-8">
-                    <div class="form-group col-lg-12" ng-class="{'has-error':altaVacuna.nombre.$invalid && altaVacuna.nombre.$dirty}">
+                    <div class="form-group col-lg-12" ng-class="{'has-error'modificaVacuna.nombre.$invalid && modificaVacuna.nombre.$dirty}">
                         <input type="text" ng-model="vacuna.nombre" name="nombre" id="txtNombre" class="form-control" placeholder="Nombre de la vacuna:" required>
-                        <span ng-if="altaVacuna.nombre.$invalid && altaVacuna.nombre.$dirty" class="help-block">Este campo es requerido</span>
+                        <span ng-if="modificaVacuna.nombre.$invalid && modificaVacuna.nombre.$dirty" class="help-block">Este campo es requerido</span>
                     </div>
-                    <div class="form-group col-lg-12" ng-class="{'has-error':altaVacuna.codigoVacuna.$invalid && altaVacuna.codigoVacuna.$dirty}">
+                    <div class="form-group col-lg-12" ng-class="{'has-error'modificaVacuna.codigoVacuna.$invalid && modificaVacuna.codigoVacuna.$dirty}">
                         <input type="number" id="txtCodigoVacuna" ng-model="vacuna.codigoVacuna" name="codigoVacuna" class="form-control" placeholder="Codigo de vacuna:" required>
-                        <span ng-if="altaVacuna.codigoVacuna.$invalid && altaVacuna.codigoVacuna.$dirty" class="help-block">Este campo es requerido</span>
+                        <span ng-if="modificaVacuna.codigoVacuna.$invalid && modificaVacuna.codigoVacuna.$dirty" class="help-block">Este campo es requerido</span>
                     </div>
-                    <div class="form-group col-lg-12" ng-class="{'has-error':altaVacuna.queEs.$invalid && altaVacuna.queEs.$dirty}">
+                    <div class="form-group col-lg-12" ng-class="{'has-error'modificaVacuna.queEs.$invalid && modificaVacuna.queEs.$dirty}">
                         <textarea ng-model="vacuna.queEs" name="queEs" id="txtQueEs" class="form-control"  Columns="50" Rows="4" placeholder="Descripcion de la vacuna" required /></textarea>
-                        <span ng-if="altaVacuna.queEs.$invalid && altaVacuna.queEs.$dirty" class="help-block">Este campo es requerido</span>
+                        <span ng-if="modificaVacuna.queEs.$invalid && modificaVacuna.queEs.$dirty" class="help-block">Este campo es requerido</span>
                     </div>
-                    <div class="form-group col-lg-12" ng-class="{'has-error':altaVacuna.afectados.$invalid && altaVacuna.afectados.$dirty}">
+                    <div class="form-group col-lg-12" ng-class="{'has-error'modificaVacuna.afectados.$invalid && modificaVacuna.afectados.$dirty}">
                         <textarea ng-model="vacuna.afectados" name="afectados" id="txtAfectados" class="form-control"  Columns="50" Rows="4"  placeholder="¿A quienes afecta?" required /></textarea>
-                        <span ng-if="altaVacuna.afectados.$invalid && altaVacuna.afectados.$dirty" class="help-block">Este campo es requerido</span>
+                        <span ng-if="modificaVacuna.afectados.$invalid && modificaVacuna.afectados.$dirty" class="help-block">Este campo es requerido</span>
                     </div>
                     <div class="form-group col-lg-12">
                         <label class="col-lg-12"><input type="checkbox"  ng-model="vacuna.aplicadaXCS" ng-true-value="'SI'" ng-false-value="'NO'" id="cBAplicaCS" />¿Es aplicada por el centro de salud?</label>
@@ -56,7 +56,7 @@
                         <input type="button" ng-click="guardarVacuna()" ng-disabled="modificaVacuna.$invalid" id="btnConfirmaAlta" value="Guardar" class="btn btn-primary form-control" />
                     </div>
                     <div class="form-group col-lg-4">
-                        <input type="button" ng-click="ruta('/administracionVacunas')" id="btnCancelarAlta" value="Cancelar" class="btn btn-default form-control" formnovalidate="true"  />
+                        <input type="button" ng-click="ruta('administracionVacunas')" id="btnCancelarAlta" value="Cancelar" class="btn btn-default form-control" formnovalidate="true"  />
                     </div>
                 </div>
         </fieldset>
@@ -204,7 +204,7 @@
             <p>La información de la vacuna se modificó exitosamente</p>
           </div>
           <div class="modal-footer">            
-            <button type="button" ng-click="ruta('/administracionVacunas')" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button type="button" ng-click="ruta('administracionVacunas')" class="btn btn-default" data-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div>

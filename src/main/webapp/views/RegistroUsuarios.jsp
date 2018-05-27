@@ -35,7 +35,7 @@
                         <label id="lblJurisdiccion">Seleccione la Jurisdicción Sanitaria</label>
                     </div>                     
                     <div class="form-group col-lg-12" >
-                        <select id="ddlJurisdiccion" class="form-control"
+                        <select id="ddlJurisdiccion" class="form-control" ng-disabled="admin"
                                         ng-model="jurisdiccion"
                                         ng-options="jurisdiccion as jurisdiccion.nombreJurisdiccion for jurisdiccion in listaJurisdicciones track by jurisdiccion.idJurisdiccion"
                                         ng-change="llenaListaCentros(jurisdiccion)">
@@ -46,7 +46,7 @@
                         <label id="lblCentro">Seleccione el Centro de Responsabilidad</label>
                     </div>                    
                     <div class="form-group col-lg-12" ng-class="{'has-error':registroUsuario.centro.$invalid && registroUsuario.centro.$dirty}">
-                            <select id="ddlCentroSalud" class="form-control"
+                            <select id="ddlCentroSalud" class="form-control" ng-disabled="admin"
                                     ng-model="centro"
                                     ng-options="centro as centro.nombreCentro for centro in listaCentros track by centro.idCentro"
                                     ng-change="llenaDatosCentro(centro)">
@@ -79,9 +79,9 @@
                             asegúrese de que sea un correo institucional</label>
                     </div>
 
-                    <div class="form-group col-lg-12" ng-class="{'has-error':registroUsuario.usuario.$invalid && registroUsuario.usuario.$dirty}">
-                        <input type="email" ng-model="administrador.usuario" name="usuario" id="txtcorreo"  class="form-control" placeholder="Correo Electronico:" required>
-                        <span ng-if="registroUsuario.usuario.$invalid && registroUsuario.usuario.$dirty" class="help-block">Este campo es requerido</span>
+                    <div class="form-group col-lg-12" ng-class="{'has-error':registroUsuario.username.$invalid && registroUsuario.username.$dirty}">
+                        <input type="email" ng-model="administrador.username" name="username" id="txtcorreo"  class="form-control" placeholder="Correo Electronico:" required>
+                        <span ng-if="registroUsuario.username.$invalid && registroUsuario.username.$dirty" class="help-block">Este campo es requerido</span>
                     </div>
                     <!--
                     <div class="form-group col-lg-12" ng-class="{'has-error':registroUsuario.usuarioConfirma.$invalid && registroUsuario.usuarioConfirma.$dirty}">
@@ -106,7 +106,7 @@
                     </div>
 
                     <div class="form-group col-lg-5">
-                        <input type="button" id="btnCancelar" ng-click="ruta('/administracionPersonal')"  value="Cancelar" class="btn btn-default form-control" formnovalidate="true"/>
+                        <input type="button" id="btnCancelar" ng-click="ruta('administracionPersonal')"  value="Cancelar" class="btn btn-default form-control" formnovalidate="true"/>
                     </div>
                 </div>
             </fieldset>
@@ -115,6 +115,7 @@
             </div>
             
             <!-- modal de confirmación genérico-->
+             
             <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div id="upModal">
@@ -128,12 +129,32 @@
                                         <label id="lblModalBody"></label>
                                     </div>
                                 <div class="modal-footer" id="footerModal">
-                                    <input type="button" ng-click="ruta('/administracionPersonal')" id="btnModifica"  value="Cerrar" class="btn btn-info" aria-hidden="true" data-dismiss="modal" />
+                                    <input type="button" ng-click="ruta('administracionPersonal')" id="btnModifica"  value="Cerrar" class="btn btn-info" aria-hidden="true" data-dismiss="modal" />
                                 </div>
                             </div>
                     </div>
                 </div>
             </div> 
+            
+            <div class="modal fade" id="myModal2" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div id="upModal2">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">
+                                        <label id="lblModalTitle">No se puede registrar el usuario</label></h4>
+                                </div>
+                                    <div class="modal-body">
+                                        <label id="lblModalBody">El correo electrónico ya se encuentra registrado</label>
+                                    </div>
+                                <div class="modal-footer" id="footerModal">
+                                    <input type="button" id="btnModifica"  value="Cerrar" class="btn btn-info" aria-hidden="true" data-dismiss="modal" />
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>             
         </section>
     </body>
 </html>

@@ -1,0 +1,88 @@
+ <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="navigation">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- <a class="navbar-brand" ui-sref="home"> -->
+                        <a class="navbar-brand">
+                            <!--Sistema de Control y Seguimiento de Vacunación en Menores-->
+                            <img src="https://image.ibb.co/kMfyow/translogover_b4.png">
+                            <!--<img src="https://image.ibb.co/dkJy5b/translogover_b3.png">-->
+                        </a>
+                    </div>
+                    <!-- Top Menu Items -->
+
+                    <ul ng-show="authenticated" class="nav navbar-right top-nav">
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-user"></i>&nbsp;Usuario:&nbsp;{{usuario.principal.nombre+' '+usuario.principal.apellidos}}&nbsp;<b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a ui-sref="perfilAdmin" ng-click="enviaObjetoAUrl(usuario.principal)"><i class="fa fa-fw fa-user"></i>&nbsp;Perfil&nbsp;</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="" ng-click="logout()"><i class="fa fa-fw fa-power-off"></i>&nbsp;Cerrar sesión&nbsp;</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+                    <div   class="collapse navbar-collapse navbar-ex1-collapse">
+                        <ul class="nav navbar-nav side-nav demo" ng-show="authenticated">
+                            <li>
+                                <a ui-sref="home"><i class="fa fa-home fa-lg" aria-hidden="true"></i>&nbsp;Inicio</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-toggle="collapse" data-target="#Vacunador"><i class="fa fa-eyedropper fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;Vacunador<i class="fa fa-fw fa-caret-down"></i></a>
+                                <ul id="Vacunador" class="collapse">
+                                    <li>
+                                        <!-- <a href="#/actualizarCartilla">&nbsp;Actualizar Cartilla de salud</a> -->
+                                        <a ui-sref="actualizarCartilla">&nbsp;Actualizar Cartilla de salud</a>
+                                    </li>
+                                    <li>
+                                        <!-- <a href="#/administracionPerfiles">&nbsp;Administrar Perfiles de menores y tutores</a> -->
+                                        <a ui-sref="administracionPerfiles">&nbsp;Administrar Perfiles de menores y tutores</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-toggle="collapse" data-target="#Administrador"><i class="fa fa-user-md fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;Administrador<i class="fa fa-fw fa-caret-down"></i></a>
+                                <ul id="Administrador" class="collapse">
+                                    <li>
+                                        <!--  <a href="#/actualizarInventario">&nbsp;Actualizar Inventario de vacunas</a> -->
+                                        <a ui-sref="actualizarInventario">&nbsp;Actualizar Inventario de vacunas</a> 
+                                    </li>
+                                    <li>                                    
+                                        <!--<a href="#/administracionPersonal">&nbsp;Administracion Personal</a> -->
+                                        <a ui-sref="administracionPersonal">&nbsp;Administracion Personal</a>                                    
+                                    </li>
+                                    <li>                                    
+                                        <!-- <a href="#/reportesVacunas">&nbsp;Reportes de vacunas aplicadas</a> -->
+                                        <a ui-sref="reportesVacunas">&nbsp;Reportes de vacunas aplicadas</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-toggle="collapse" data-target="#especiales"><i class="fa fa-asterisk fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;Actividades especiales<i class="fa fa-fw fa-caret-down"></i></a>
+                                <ul id="especiales" class="collapse">
+                                    <li>                                    
+                                        <!-- <a href="#/administracionVacunas">&nbsp;Administracion de Vacunas</a> -->
+                                        <a ui-sref="administracionVacunas">&nbsp;Administracion de Vacunas</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <!-- <a href="#/informacion"><i class="fa fa-fw fa-desktop"></i>&nbsp;Información</a> -->
+                                <a ui-sref="informacion"><i class="fa fa-fw fa-desktop"></i>&nbsp;Información</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </nav>
+

@@ -84,10 +84,10 @@
                         </div>
                         <div class="row col-lg-12">
                             <div class="form-group col-lg-5">
-                                <input type="button" ng-click="registraAplicacion()" id="btnAceptar" ng-disabled="!editaVM" value="Aceptar" class="btn btn-primary form-control" />
+                                <input type="button" ng-click="registraAplicacion()" id="btnAceptar" ng-disabled="ActualizaCartilla.$invalid" value="Aceptar" class="btn btn-primary form-control" />
                             </div>
                             <div class="form-group col-lg-5">
-                                <input type="button" ng-click="ruta('/')"id="btnCancelar"  value="Cancelar" class="btn btn-default form-control" formnovalidate="true"/>
+                                <input type="button" ng-click="ruta('home')"id="btnCancelar"  value="Cancelar" class="btn btn-default form-control" formnovalidate="true"/>
                             </div>
                         </div>
                     </div>
@@ -97,17 +97,17 @@
             </div>
             </div>
             <!-- Modal de confirmación -->
-            <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal fade" id="myModalGen" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                  <div class="modal-dialog">
-                     <div id="upModal">
+                     <div id="upModalGen">
                              <div class="modal-content">
                                  <div class="modal-header">
                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                      <h4 class="modal-title">
-                                         <label id="lblModalTitle"  Text=""></label></h4>
+                                         <label id="lblModalTitleGen"  Text=""></label></h4>
                                  </div>
                                  <div class="modal-body">
-                                     <label id="lblModalBody"></label>
+                                     <label id="lblModalBodyGen"></label>
                                  </div>
                                  <div class="modal-footer" id="footerModal">
                                      <input type="button" id="btnCerrar"  value="Cerrar" class="btn btn-info" aria-hidden="true" data-dismiss="modal" />
@@ -133,7 +133,7 @@
                                 </div>
                                 <div class="modal-footer" id="footerModal">
                                     <button type="button" ng-click="limpiarFormulario()" id="btnEliminar" class="btn btn-primary" >Sí</button>
-                                    <button type="button" ng-click="ruta('/')" class="btn btn-default" aria-hidden="true" data-dismiss="modal">No</button>
+                                    <button type="button" ng-click="ruta('home')" class="btn btn-default" aria-hidden="true" data-dismiss="modal">No</button>
                                 </div>
                             </div>
                     </div>

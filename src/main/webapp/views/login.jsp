@@ -3,6 +3,7 @@
     Created on : 6/10/2017, 03:10:53 PM
     Author     : Antonio Perez
 --%>
+<!--
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html ng-app="appSicosvac">
@@ -23,8 +24,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SICOSVAC</title>
     </head>
-    <body>
-        <div class="container" ng-controller="navigation">    
+    <body>-->
+    <div class="container">    
         <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-2">                    
             <div class="panel panel-default" >
                     <div class="panel-heading">
@@ -36,7 +37,7 @@
 
                         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                             <div class="imgwrapper">
-                                <img src="https://www.ssaver.gob.mx/wp-content/uploads/2017/09/LOGOSTRA4410.png" alt="logostra4-01" width="480" height="140" class="img-responsive">
+                                <img src="https://image.ibb.co/fzU8ow/logoss2017_500px.png" alt="" width="480" height="140" class="img-responsive">
                             </div>
                         <br>    
                         <section>
@@ -61,11 +62,11 @@
 
                                     <div class="col-lg-12">
                                       <button type="submit" class="btn btn-primary">Acceder</button>
-                                      <div style="float:right; font-size: 80%; position: relative; top:-20px"><a href="#">¿Olvidó su contraseña?</a></div>
+                                      <!-- <div style="float:right; font-size: 80%; position: relative; top:-20px"><a href="#">¿Olvidó su contraseña?</a></div> -->
                                       <!-- <a id="btn-fblogin"  href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()" class="btn btn-primary">¿Olvidó su contraseña?</a> -->
                                     </div>
                                 </div>
-                                <div class="alert alert-info margin-top-5" ng-show="error">{{error}}</div>
+                                <div class="alert alert-info margin-top-5" ng-show="error">{{mensaje}}</div>
 <!--
                                 <div class="form-group">
                                     <div class="col-md-12 control">
@@ -160,10 +161,11 @@
                 
          </div> 
     </div>
-
+<!--
             <script src="theme/js/jquery.js"></script>
             <script src="theme/js/bootstrap-datepicker.js"></script>
-            <!-- Bootstrap Core JavaScript -->
+            <!-- Bootstrap Core JavaScript --
             <script src="theme/js/bootstrap.min.js"></script>        
     </body>
 </html>
+-->

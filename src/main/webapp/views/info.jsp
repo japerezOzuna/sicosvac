@@ -13,11 +13,13 @@
     </head>
     <body>
         <div class="imgwrapper">
-            <img src="https://www.ssaver.gob.mx/wp-content/uploads/2017/09/LOGOSTRA4410.png" alt="logostra4-01" width="480" height="140" class="img-responsive">
+            <!-- <img src="https://www.ssaver.gob.mx/wp-content/uploads/2017/09/LOGOSTRA4410.png" alt="logostra4-01" width="480" height="140" class="img-responsive"> -->
+            <img src="https://image.ibb.co/fzU8ow/logoss2017_500px.png" alt="logostra4-01" width="480" height="140" class="img-responsive">
     <!--    </div>        
         <div class="imgwrapper"> -->
             
-            <img src="http://www.gob.mx/cms/uploads/image/file/50457/Esquema-Nacional-de-Vacunacion-2015.jpg" class="img-responsive">
+            <img src="https://image.ibb.co/iAZ9nm/Esquema_Nacional_de_Vacunacion_2015.jpg" class="img-responsive">
+            <!-- <img src="http://www.gob.mx/cms/uploads/image/file/50457/Esquema-Nacional-de-Vacunacion-2015.jpg" class="img-responsive"> -->
             <!--<img src="http://salud.edomex.gob.mx/salud/elementos2/cartillans/cartillas.jpg" class="img-responsive">-->
             
         </div>

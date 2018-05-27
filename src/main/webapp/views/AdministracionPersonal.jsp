@@ -21,7 +21,7 @@
                     <div class="row col-lg-8">
                         <div class="form-group col-lg-4">
                             <!--<input type="button" onClick="location.href='PerfilMenor.jsp'" id="btnMenores"  value="Dar de alta un menor" class="btn btn-primary form-control" />-->
-                            <input type="button" ng-click="ruta('/registroUsuarios')" id="btnRegistroUsuario"  value="Dar de alta un usuario" class="btn btn-primary form-control" />
+                            <input type="button" ng-click="ruta('registroUsuarios')" id="btnRegistroUsuario"  value="Dar de alta un usuario" class="btn btn-primary form-control" />
                         </div>
                     </div>
                 </fieldset>  <br>             
@@ -31,7 +31,7 @@
                 </div>                      
                 <div class="form-group col-lg-8">
                     <div class="col-lg-6">
-                        <select id="ddlJurisdiccion" class="form-control"
+                        <select id="ddlJurisdiccion" class="form-control" ng-disabled="admin"
                                         ng-model="jurisdiccion"
                                         ng-options="jurisdiccion as jurisdiccion.nombreJurisdiccion for jurisdiccion in listaJurisdicciones track by jurisdiccion.idJurisdiccion"
                                         ng-change="llenaListaCentros(jurisdiccion)">
@@ -44,7 +44,7 @@
                 </div>
                 <div class="form-group col-lg-8">
                     <div class="form-group col-lg-6">
-                            <select id="ddlCentroSalud" class="form-control"
+                            <select id="ddlCentroSalud" class="form-control" ng-disabled="admin"
                                     ng-model="centro"
                                     ng-options="centro as centro.nombreCentro for centro in listaCentros track by centro.idCentro">
                                 <option Value="">-Todos los centros-</option>
@@ -91,21 +91,24 @@
                     </select>
                 </div>
                 <div class="form-group col-lg-8" ng-class="{'has-error':administraUsuario.estatus.$invalid && administraUsuario.estatus.$dirty}">
-                    <label id="lblestatus">Asigne un estatus a la cuenta ya sea Activada o Desactivada</label><br />
+                    <label id="lblestatus">Asigne un estatus a la cuenta</label><br />
                     <select id="ddlEstatusSelect" ng-model="administrador.estatus" ng-disabled="!editaUsuario" name="estatus" class="form-control">
                         <option Value="1">Activada</option>
                         <option Value="2">Desactivada</option>
                     </select>
                     <span ng-if="administraUsuario.estatus.$invalid && administraUsuario.estatus.$dirty" class="help-block">Este campo es requerido</span>
                 </div>
-                <div class="form-group row col-lg-12">
-                    <div class="form-group col-lg-3">
+                <div class="form-group row col-lg-8">
+                    <div class="form-group col-lg-4">
                         <input type="button" ng-click="confirmaModificacionUsuario()" ng-disabled="!editaUsuario" id="btnGuardar"  value="Guardar" class="btn btn-primary form-control"/>
                     </div>
-                    <div class="form-group col-lg-3">
-                        <input type="button" ng-click="ruta('/')"id="btnCancelar"  value="Cancelar" class="btn btn-default form-control" formnovalidate="true"/>
+                    <div class="form-group col-lg-4">
+                           <input type="button" ng-click="confirmaEliminacionUsuario()"  ng-disabled="!editaUsuario" id="btnEliminar" value="Eliminar" class="btn btn-danger form-control" />
+                    </div>                                        
+                    <div class="form-group col-lg-4">
+                        <input type="button" ng-click="ruta('home')" id="btnCancelar"  value="Cancelar" class="btn btn-default form-control" formnovalidate="true"/>
                     </div>
-                </div>
+                </div>                  
             </fieldset>
             <!--
                 <fieldset id="pnlOpciones"><legend>Opciones</legend>
@@ -139,6 +142,26 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Modal confirma eliminacion -->
+            <div id="modalConfirmaEliminar" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Eliminar</h4>
+              </div>
+              <div class="modal-body">
+                <p>¿Esta Seguro que desea eliminar este usuario?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="btnEliminar" class="btn btn-primary" ng-click="eliminarUsuario(administrador)">Sí</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+              </div>
+            </div>
+          </div>
+        </div>             
         </section>
     </body>
 </html>

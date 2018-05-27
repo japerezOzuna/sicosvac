@@ -21,11 +21,11 @@
                             <div class="row col-lg-8">
                                 <div class="form-group col-lg-4">
                                     <!--<input type="button" onClick="location.href='PerfilMenor.jsp'" id="btnMenores"  value="Dar de alta un menor" class="btn btn-primary form-control" />-->
-                                    <input type="button" ng-click="ruta('/altaPerfilMenor')" id="btnMenores"  value="Dar de alta un menor" class="btn btn-primary form-control" />
+                                    <input type="button" ng-click="ruta('altaPerfilMenor')" id="btnMenores"  value="Dar de alta un menor" class="btn btn-primary form-control" />
                                 </div>
                                 <div class="form-group col-lg-4">
                                     <!--<input type="button" onClick="location.href='PerfilTutor.jsp'" id="btnTutores"  value="Dar de alta un tutor" class="btn btn-default form-control" />--->
-                                    <input type="button" ng-click="ruta('/altaPerfilTutor')" id="btnTutores"  value="Dar de alta un tutor" class="btn btn-default form-control" />
+                                    <input type="button" ng-click="ruta('altaPerfilTutor')" id="btnTutores"  value="Dar de alta un tutor" class="btn btn-default form-control" />
                                 </div>
                             </div>
                         </fieldset>

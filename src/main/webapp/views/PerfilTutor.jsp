@@ -98,7 +98,7 @@
                             <input type="submit" ng-click="confirmaAltaPerfilTutor()" ng-disabled="altaTutor.$invalid" id="btnConfirmaAltaPerfiltutor" value="Guardar perfil" class="btn btn-primary form-control" />
                         </div>
                         <div class="form-group col-lg-5">
-                            <input type="button" ng-click="ruta('/administracionPerfiles')" id="btnCancelarAltaPerfiltutor" value="Cancelar" class="btn btn-default form-control"/>
+                            <input type="button" ng-click="ruta('administracionPerfiles')" id="btnCancelarAltaPerfiltutor" value="Cancelar" class="btn btn-default form-control"/>
                         </div>
                     </div>
                 </div>                      
@@ -120,7 +120,7 @@
                                     <span id="lblModalBody"></span>
                                 </div>
                                 <div class="modal-footer" id="footerModal">
-                                    <input type="button" ng-click="ruta('/administracionPerfiles')" id="btnCerrar"  value="Cerrar" class="btn btn-info" aria-hidden="true" data-dismiss="modal" />
+                                    <input type="button" ng-click="ruta('administracionPerfiles')" id="btnCerrar"  value="Cerrar" class="btn btn-info" aria-hidden="true" data-dismiss="modal" />
                                 </div>
                             </div>
                     </div>

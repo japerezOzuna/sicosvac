@@ -99,7 +99,7 @@
                         <input type="button" ng-click="guardaPerfilMenor()" id="btnGuardaPerfil"  value="Guardar Perfil" class="btn btn-primary form-control"/>
                     </div>
                     <div class="form-group col-lg-4">
-                        <input type="button" ng-click="ruta('/administracionPerfiles')"  id="btnCancelar"  value="Cancelar" class="btn btn-default form-control" />
+                        <input type="button" ng-click="ruta('administracionPerfiles')"  id="btnCancelar"  value="Cancelar" class="btn btn-default form-control" />
                     </div>
                 </div>
             </fieldset>
@@ -123,7 +123,7 @@
                         <input type="button" id="btnFiltrar"  ng-click="aplicaFiltro()" class="btn btn-primary form-control" value="Filtrar" formnovalidate="true"/>
                     </div>
                     <div class="form-group col-lg-3">
-                        <input type="button" id="btnImprimir"  class="btn btn-default form-control" value="Imprimir Historial" formnovalidate="true"/>
+                        <input type="button" id="btnImprimir" ng-click="generaPDF(menor)" class="btn btn-info form-control" value="Imprimir Historial" formnovalidate="true"/>
                     </div>
                 </div>
                 <div class="form-group col-lg-8">
@@ -185,18 +185,88 @@
             </div>
             </div>
 
-            <!-- modal de confirmación genérico-->
-            <div class="modal fade" id="modalConfirmacionVM" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div id="upModal">
+            <!-- modal de impresion de cartilla-->
+            <div class="modal fade" id="modalImprimeHistorial" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg"  role="document">
+                    <div id="upModalX">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     <h4 class="modal-title">
-                                        <label id="lblModalTitle"></label></h4>
+                                        <label id="lblModalTitleX"></label></h4>
                                 </div>
                                     <div class="modal-body">
-                                        <label id="lblModalBody"></label>
+                                        <div class="form-group col-lg-12">
+                                            <div class="form-group col-lg-6">
+                                                <img src="https://image.ibb.co/cyEkJw/translogover.png" width="200" height="46" border="0" />
+                                            </div>
+                                        </div>
+                                        <br>                                        
+                                        <center><h2>HISTORIAL DE VACUNACIÓN</h2></center>
+                                        <br>
+                                        
+                                        <div class="form-group col-lg-12">
+                                            <div class="form-group col-lg-6">
+                                                <label>DATOS GENERALES DEL MENOR</label><br><br>
+                                                <label>CURP:</label> {{menor.curp}}<br>
+                                                <label>Nombre:</label> {{menor.nombre+' '+menor.apellidos}}<br>
+                                                <label>Fecha de nacimiento:</label>{{menor.fechaNac|date:'dd-MM-yyyy'}}<br>
+                                                <div ng-show="menor.sexo===1" ><label>Sexo:&nbsp;</label>MASCULINO</div>
+                                                <div ng-show="menor.sexo===2"><label>Sexo:&nbsp;</label>FEMENINO</div>
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <label id="Label3">DATOS DEL TUTOR</label><br><br>
+                                                <label>CURP:</label> {{tutorAGuardar.curp}}<br>
+                                                <label>Nombre:</label> {{tutorAGuardar.nombre+' '+tutorAGuardar.apellidos}}<br>
+                                                <label>Dirección:</label> {{tutorAGuardar.calle+' '+tutorAGuardar.numero}}<br>
+                                                <label>Colonia:</label> {{tutorAGuardar.colonia}}<br>
+                                                <label>Municipio:</label> {{tutorAGuardar.municipio+', '+tutorAGuardar.estado}}<br>
+                                            </div>                                     
+                                        </div>
+                                        <label>VACUNAS APLICADAS Y POR APLICAR</label>
+                                        
+                                            <div id="historial">
+                                        <table id="gvCartillaModal" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Vacuna</th>   
+                                                    <th>Dosis</th>
+                                                    <th>Edad (meses)</th>
+                                                    <th>Fecha de aplicación</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="vm in listaVacunasMenores">
+                                                    <td>{{vm.vacuna.nombre}}</td>
+                                                    <td>{{vm.catalogoAplicacion.dosis}}</td>
+                                                    <td>{{vm.catalogoAplicacion.edadMeses}}</td>
+                                                    <td>{{vm.fechaAplicacion | date:'dd/MM/yyyy'}}</td>
+                                                </tr>    
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    </div>
+                                <div class="modal-footer" id="footerModal">
+                                    <input type="button" id="btnModifica"  ng-click="generaPDF(menor)" value="Genera PDF" class="btn btn-info" aria-hidden="true" data-dismiss="modal" />
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>             
+            
+            
+            <!-- modal de confirmación genérico-->
+            <div class="modal fade" id="myModalGen" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div id="upModalGen">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">
+                                        <label id="lblModalTitleGen"></label></h4>
+                                </div>
+                                    <div class="modal-body">
+                                        <label id="lblModalBodyGen"></label>
                                     </div>
                                 <div class="modal-footer" id="footerModal">
                                     <input type="button" id="btnModifica"  value="Cerrar" class="btn btn-info" aria-hidden="true" data-dismiss="modal" />

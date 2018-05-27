@@ -22,7 +22,7 @@
                         <div class="form-group col-lg-12">
                             <label id="lblCentroSalud"  Font-Bold="True">Seleccione la jurisdicción sanitaria</label>
                             <br />
-                            <select id="ddlJurisdiccion" class="form-control"
+                            <select id="ddlJurisdiccion" class="form-control" ng-disabled="admin"
                                     ng-model="jurisdiccion"
                                     ng-options="jurisdiccion as jurisdiccion.nombreJurisdiccion for jurisdiccion in listaJurisdicciones track by jurisdiccion.idJurisdiccion"
                                     ng-change="llenaListaCentros(jurisdiccion)">
@@ -37,7 +37,7 @@
                     <div class="form-group col-lg-12">
                             <label id="lblCentroSalud"  Font-Bold="True">Seleccione el centro de responsabilidad</label>
                             <br />
-                            <select id="ddlCentroSalud" class="form-control"
+                            <select id="ddlCentroSalud" class="form-control" ng-disabled="admin"
                                     ng-model="centro"
                                     ng-options="centro as centro.nombreCentro for centro in listaCentros track by centro.idCentro"
                                     ng-change="llenaListaVacunas(centro)">
@@ -47,7 +47,7 @@
                     <div class="row col-lg-6">
                         <div class="form-group col-lg-12">
                             <label id="lblVerCentro"  Font-Bold="True">Verifique los datos</label>
-                            <textarea ng-model="datosCentro" id="txtAVerCentro" class="form-control" TextMode="multiline" Columns="50" Rows="4"  disabled/></textarea>
+                            <textarea ng-model="datosCentro" id="txtAVerCentro" class="form-control" TextMode="multiline" Columns="50" Rows="6"  disabled/></textarea>
                         </div>
                     </div>
                 </fieldset>
@@ -78,7 +78,7 @@
                     <div class="row col-lg-6">
                         <div class="form-group col-lg-12">
                             <label id="lblVerVacuna">Verifique los datos</label>
-                            <textarea ng-model="datosVacuna" id="txtAVerVacuna" class="form-control" TextMode="multiline" Columns="50" Rows="4"  disabled/></textarea>
+                            <textarea ng-model="datosVacuna" id="txtAVerVacuna" class="form-control" TextMode="multiline" Columns="50" Rows="5"  disabled/></textarea>
                         </div>
                     </div>
                 </fieldset>
@@ -106,7 +106,7 @@
                             <input type="button" ng-click="confirmarInventario()" id="btnRegistraInventario"  class="btn btn-primary form-control" value="Guardar Nuevo Inventario"/>
                         </div>
                         <div class="form-group col-lg-5">
-                            <input type="button" onClick="location.href ='/sicosvac/'" id="btnCancelarAlta" value="Cancelar" class="btn btn-default form-control" formnovalidate="true"  />
+                            <input type="button" ng-click="ruta('home')" id="btnCancelarAlta" value="Cancelar" class="btn btn-default form-control" formnovalidate="true"  />
                         </div>                        
                     </div>
         </fieldset>
